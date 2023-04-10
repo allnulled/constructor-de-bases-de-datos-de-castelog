@@ -1,0 +1,12 @@
+{
+  "name": "constructor-de-bases-de-datos-de-castelog",
+  "version": "1.0.0",
+  "description": "Construcción de infraestructura y esquema de datos de Castelog",
+  "main": "src/index.html",
+  "scripts": {
+    "test": "npx http-server ./src/www -c-1"
+  },
+  "keywords": [],
+  "author": "allnulled",
+  "license": "ISC"
+}

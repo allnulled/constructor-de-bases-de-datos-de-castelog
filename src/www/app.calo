@@ -1,0 +1,760 @@
+Empaquetable con:
+  ./js/download_file.js
+Ejecutable como documento HTML5
+    con autor allnulled
+    con nombre app-por-defecto
+    con versión 0.0.1
+<head>
+    <title>🗄 Constructor de bases de datos de Castelog</title>
+    <meta charset="utf8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./components/estilos.css" />
+    <style>
+      .tarjeta_tipica {
+        border: 1px solid #CCC;
+        margin-top: 1px;
+        padding: 4px;
+      }
+      .win7 [role="tabpanel"] {
+        padding: 2px;
+      }
+      .w_100 { width:100% !important; }
+      .subtitulo_de_pestanya {
+        padding: 4px !important;
+      }
+      .win7 button.boton_lateral {
+        margin-left: 1px;
+      }
+      .win7 details > summary {
+        display: block !important;
+      }
+      .win7 ul.tree-view.has-container {
+        margin: 0px;
+        padding: 0px;
+      }
+      .win7 ul.tree-view li {
+        margin-top: 0px !important;
+      }
+    </style>
+</head>
+<body><div id="app"></div></body>.
+
+importo api nativa.
+
+creo DiseniadorDeEsquemaDeConstructorDeBasesDeDatosDeCastelog como un componente vue2 con nombre "DiseniadorDeEsquemaDeConstructorDeBasesDeDatosDeCastelog" con plantilla {
+  <div class="DiseniadorDeEsquemaDeConstructorDeBasesDeDatosDeCastelog Component">
+    <div class="titulo_de_pestanya">▦ Tablas:</div>
+    <div class="w_100 horizontal_layout" style="margin-top: 0px;">
+      <button class="w_100" v-on:click="() => agregar_elemento(tablas, 'tabla')">
+        <div class="emoji"> ➕ </div>
+        <div class="para_tablet_o_mayor">Añadir tabla</div>
+      </button>
+      <button class="boton_minimal margen_izquierda_item">
+        <div class="emoji" v-on:click="() => raiz.guardar_datos()"> ✔ </div>
+        <div class="para_tablet_o_mayor" style="padding-left: 4px; padding-right: 10px;">Guardar</div>
+      </button>
+      <button class="boton_minimal margen_izquierda_item">
+        <div class="emoji" v-on:click="() => raiz.cargar_datos()"> ♻️ </div>
+        <div class="para_tablet_o_mayor" style="padding-left: 4px; padding-right: 10px;">Cargar</div>
+      </button>
+    </div>
+    <div v-for="tabla, tabla_index in tablas" v-bind:key="'tabla-' + tabla_index" class="">
+      <div class="horizontal_layout">
+        <div class="w_100 titulo_de_pestanya subtitulo_de_pestanya">{{ tabla.nombre || '?' }} (tabla)</div>
+        <button class="boton_lateral" v-on:click="() => alternar_elemento(tabla)" :class="{active:tabla.esta_mostrando_detalles}">
+          <span>☰</span>
+        </button>
+        <button class="boton_lateral" v-on:click="() => eliminar_elemento(tablas, tabla_index)">
+          <span>❌</span>
+        </button>
+      </div>
+      <article role="tabpanel" v-if="tabla.esta_mostrando_detalles">
+        <ul class="tree-view has-container">
+          <li>
+            <details>
+              <summary>
+                Nombre:
+              </summary>
+              <div>
+                <input class="w_100" type="text" v-model="tabla.nombre" />
+              </div>
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary>
+                Descripción:
+              </summary>
+              <div>
+                <textarea class="w_100" v-model="tabla.descripcion"></textarea>
+              </div>
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary>
+                Ruta de URL de tabla:
+              </summary>
+              <div>
+                <input class="w_100" type="text" v-model="tabla.ruta_de_url_de_tabla" />
+              </div>
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary>
+                Identificador único:
+              </summary>
+              <div>
+                <input class="w_100" type="text" v-model="tabla.identificador_unico" />
+              </div>
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary>
+                Atributos de tabla extra:
+              </summary>
+              <div>
+                <button class="w_100" style="" v-on:click="() => agregar_elemento(tabla.atributos_de_tabla, 'atributo de tabla')">Añadir atributo</button>
+                <ul class="tree-view has-container">
+                  <li v-for="atributo, atributo_index in tabla.atributos_de_tabla" v-bind:key="'tabla-' + tabla_index + '-atributo-' + atributo_index">
+                    <div class="horizontal_layout">
+                      <div class="w_100">
+                        <details>
+                          <summary>{{ atributo_index }}</summary>
+                          <div>
+                            <textarea class="w_100" type="text" v-model="tabla.atributos_de_tabla[atributo_index]"></textarea>
+                          </div>
+                        </details>
+                      </div>
+                      <button class="boton_lateral" v-on:click="() => eliminar_elemento(tabla.atributos_de_tabla, atributo_index)">
+                        <span>❌</span>
+                      </button>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary>
+                Columnas:
+              </summary>
+              <div>
+                <div class="titulo_de_pestanya">▥ Columnas:</div>
+                <button class="w_100" style="" v-on:click="() => agregar_elemento(tabla.columnas, 'columna')">Añadir columna</button>
+                  <div v-for="columna, columna_index in tabla.columnas" v-bind:key="'tabla-' + tabla_index + '-columna-' + columna_index">
+                    <div class="horizontal_layout">
+                      <div class="w_100 titulo_de_pestanya subtitulo_de_pestanya">{{ columna.nombre || '?' }} (columna)</div>
+                      <button class="boton_lateral" v-on:click="() => alternar_elemento(columna)" :class="{active:columna.esta_mostrando_detalles}">
+                        <span>☰</span>
+                      </button>
+                      <button class="boton_lateral" v-on:click="() => eliminar_elemento(tabla.columnas, columna_index)">
+                        <span>❌</span>
+                      </button>
+                    </div>
+                    <article role="tabpanel" v-if="columna.esta_mostrando_detalles">
+                      <ul class="tree-view has-container">
+                        <li>
+                          <details>
+                            <summary>
+                              Nombre:
+                            </summary>
+                            <div>
+                              <input class="w_100" type="text" v-model="columna.nombre" />
+                            </div>
+                          </details>
+                        </li>
+                        <li>
+                          <details>
+                            <summary>
+                              Descripción:
+                            </summary>
+                            <div>
+                              <textarea class="w_100" v-model="columna.descripcion"></textarea>
+                            </div>
+                          </details>
+                        </li>
+                        <li>
+                          <details>
+                            <summary>
+                              Ruta de URL de columna:
+                            </summary>
+                            <div>
+                              <input class="w_100" type="text" v-model="columna.ruta_de_url_de_columna" />
+                            </div>
+                          </details>
+                        </li>
+                        <li>
+                          <details>
+                            <summary>
+                              Identificador único:
+                            </summary>
+                            <div>
+                              <input class="w_100" type="text" v-model="columna.identificador_unico" />
+                            </div>
+                          </details>
+                        </li>
+                        <li>
+                          <details>
+                            <summary>
+                              Atributos de columna extra:
+                            </summary>
+                            <div>
+                              <button class="w_100" style="" v-on:click="() => agregar_elemento(columna.atributos_de_columna, 'atributo de columna', { clave:'', valor:'' })">Añadir atributo</button>
+                              <ul class="tree-view has-container">
+                                <li v-for="atributo, atributo_index in columna.atributos_de_columna" v-bind:key="'tabla-' + tabla_index + '-atributo-' + atributo_index">
+                                  <div class="horizontal_layout">
+                                    <div class="w_100">
+                                      <details>
+                                        <summary>{{ atributo_index }}</summary>
+                                        <div>
+                                          <textarea class="w_100" type="text" v-model="columna.atributos_de_columna[atributo_index]"></textarea>
+                                        </div>
+                                      </details>
+                                    </div>
+                                    <button class="boton_lateral" v-on:click="() => eliminar_elemento(columna.atributos_de_columna, atributo_index)">
+                                      <span>❌</span>
+                                    </button>
+                                  </div>
+                                </li>
+                              </ul>
+                            </div>
+                          </details>
+                        </li>
+                      </ul>
+                    </article>
+                  </div>
+              </div>
+            </details>
+          </li>
+        </ul>
+      </article>
+    </div>
+  </div>
+} con lógica {
+  retorno {
+    propiedad props como {
+      raiz: {
+        propiedad type como Object.
+        propiedad required como true.
+      }
+    }.
+    método data donde {
+      retorno {
+        tablas: {}
+      }.
+    }.
+    propiedad methods como {
+      método agregar_elemento con (elementos, tipo_de_elemento o en su defecto "elemento", valor_base o en su defecto {}) donde {
+        creo variable nombre como "".
+        hasta que (nombre no es igual que "") y (nombre no está contenido en un conjunto de claves del objeto elementos) {
+          asigno nombre como this.$window.prompt("¿Qué nombre de " + tipo_de_elemento + "?").
+          si nombre no es tipo texto retorno.
+        }.
+        asigno elementos[nombre] como {
+          tipo: tipo_de_elemento,
+          nombre,
+          descripcion: "",
+          identificador_unico: ""
+        } extendido por cuando tipo_de_elemento es igual que "tabla" entonces {
+          ruta_de_url_de_tabla: "/",
+          atributos_de_tabla: {},
+          columnas: {},
+          esta_mostrando_detalles: false
+        } si no cuando tipo_de_elemento es igual que "columna" entonces {
+          ruta_de_url_de_columna: "/",
+          atributos_de_columna: {},
+          tipo_de_dato: "texto",
+          es_identificador: false,
+          es_clave_unica: false,
+          es_clave_foranea: false,
+          es_columna_virtual: false,
+          tiene_valor_por_defecto: null,
+          esta_mostrando_detalles: false
+        } si no {} también extendido por valor_base.
+        si tipo_de_elemento es igual que "atributo de tabla" asigno elementos[nombre] como "".
+        si tipo_de_elemento es igual que "atributo de columna" asigno elementos[nombre] como "".
+        hago this.$forceUpdate(true).
+      }.
+      método alternar_elemento con (elemento) donde {
+        asigno elemento.esta_mostrando_detalles como no elemento.esta_mostrando_detalles.
+        hago this.$forceUpdate(true).
+      }.
+      método eliminar_elemento con (elementos, elemento_index) donde {
+        elimino propiedad elementos[elemento_index].
+        hago this.$forceUpdate(true).
+      }.
+    }.
+  }.
+}.
+
+creo PanelFinalDeConstructorDeBasesDeDatosDeCastelog como un componente vue2 con nombre "PanelFinalDeConstructorDeBasesDeDatosDeCastelog" con plantilla {
+  <div class="PanelFinalDeConstructorDeBasesDeDatosDeCastelog Component">
+    <button class="w_100" v-on:click="exportar">Exportar arquitectura</button>
+  </div>
+} con lógica {
+  retorno {
+    propiedad props como {
+      raiz: {
+        propiedad type como Object.
+        propiedad required como true.
+      }
+    }.
+    método data donde {
+      retorno {
+        
+      }.
+    }.
+    propiedad methods como {
+      método exportar donde {
+        creo datos como this.raiz.obtener_datos().
+        creo nombre como this.$window.prompt("¿Qué nombre de fichero?", "arquitectura.calo-db.json").
+        hago window.download_file_by_source(nombre, datos textualizado).
+      }.
+    }.
+  }.
+}.
+
+creo ConstructorDeBasesDeDatosDeCastelog como un componente vue2 con nombre "ConstructorDeBasesDeDatosDeCastelog" con plantilla {
+  <div class="ConstructorDeBasesDeDatosDeCastelog Component win7">
+    <section class="tabs">
+      <menu role="tablist" aria-label="InfraestructuraDeBaseDeDatos">
+        <button role="tab" v-on:click="() => seleccionar_pestania('infraestructura')" :aria-selected="pestania_seleccionada === 'infraestructura'">
+          <div class="emoji"> 🖥️ </div>
+          <div class="para_tablet_o_mayor" style="white-space: nowrap;">Infraestructura</div>
+        </button>
+        <button role="tab" v-on:click="() => seleccionar_pestania('esquema')" :aria-selected="pestania_seleccionada === 'esquema'">
+          <div class="emoji"> ▤ </div>
+          <div class="para_tablet_o_mayor" style="white-space: nowrap;">Esquema</div>
+        </button>
+        <button role="tab" v-on:click="() => seleccionar_pestania('datos')" :aria-selected="pestania_seleccionada === 'datos'">
+          <div class="emoji"> ⭐ </div>
+          <div class="para_tablet_o_mayor" style="white-space: nowrap;">Descargar</div>
+        </button>
+      </menu>
+    </section>
+    <article role="tabpanel" v-show="pestania_seleccionada === 'infraestructura'">
+      <DiseniadorDeInfraestructuraDeConstructorDeBasesDeDatosDeCastelog ref="control_de_infraestructura" :raiz="this" />
+    </article>
+    <article role="tabpanel" v-show="pestania_seleccionada === 'esquema'">
+      <DiseniadorDeEsquemaDeConstructorDeBasesDeDatosDeCastelog ref="control_de_esquema" :raiz="this" />
+    </article>
+    <article role="tabpanel" v-show="pestania_seleccionada === 'datos'">
+      <PanelFinalDeConstructorDeBasesDeDatosDeCastelog ref="control_de_datos" :raiz="this" />
+    </article>
+  </div>
+} con lógica {
+  retorno {
+    método data donde {
+      retorno {
+        pestania_seleccionada: "infraestructura"
+      }.
+    }.
+    propiedad methods como {
+      método seleccionar_pestania con (pestania) donde {
+        asigno this.pestania_seleccionada como pestania.
+      }.
+      método obtener_datos con () donde {
+        creo infraestructura como this.$refs.control_de_infraestructura.maquinas.
+        creo esquema como this.$refs.control_de_esquema.tablas.
+        retorno { infraestructura, esquema }.
+      }.
+      método guardar_datos donde {
+        creo datos como this.obtener_datos().
+        asigno localStorage._constructor_de_bases_de_datos_de_castelog_ como datos textualizado.
+      }.
+      método cargar_datos donde {
+        creo datos como un intento donde retorno localStorage._constructor_de_bases_de_datos_de_castelog_ parseado como JSON en errores retorno { infraestructura: [], esquema: {} }.
+        si this.$refs.control_de_infraestructura asigno this.$refs.control_de_infraestructura.maquinas como datos.infraestructura.
+        si this.$refs.control_de_esquema asigno this.$refs.control_de_esquema.tablas como datos.esquema.
+        retorno datos.
+      }.
+    }.
+    método mounted donde {
+      hago this.cargar_datos().
+    }.
+  }.
+}.
+
+creo DiseniadorDeInfraestructuraDeConstructorDeBasesDeDatosDeCastelog como un componente vue2 con nombre "DiseniadorDeInfraestructuraDeConstructorDeBasesDeDatosDeCastelog" con plantilla {
+  <div class="DiseniadorDeInfraestructuraDeConstructorDeBasesDeDatosDeCastelog Component win7">
+    <div class="titulo_de_pestanya">🖥️ Máquinas:</div>
+    <div class="w_100 horizontal_layout" style="margin-top: 0px;">
+      <button class="w_100" v-on:click="() => agregar_maquina()">
+        <div class="emoji"> ➕ </div>
+        <div class="para_tablet_o_mayor">Añadir máquina</div>
+      </button>
+      <button class="boton_minimal margen_izquierda_item">
+        <div class="emoji" v-on:click="() => raiz.guardar_datos()"> ✔ </div>
+        <div class="para_tablet_o_mayor" style="padding-left: 4px; padding-right: 10px;">Guardar</div>
+      </button>
+      <button class="boton_minimal margen_izquierda_item">
+        <div class="emoji" v-on:click="() => raiz.cargar_datos()"> ♻️ </div>
+        <div class="para_tablet_o_mayor" style="padding-left: 4px; padding-right: 10px;">Cargar</div>
+      </button>
+    </div>
+    <div v-for="maquina, maquina_index in maquinas" v-bind:key="'maquina-' + maquina_index" class="">
+      <div class="horizontal_layout">
+        <div class="w_100 titulo_de_pestanya subtitulo_de_pestanya">{{ maquina.nombre || '?' }} (máquina)</div>
+        <button class="boton_lateral" v-on:click="() => alternar_elemento(maquina)" :class="{active:maquina.esta_mostrando_detalles}">
+          <span>☰</span>
+        </button>
+        <button class="boton_lateral" v-on:click="() => eliminar_elemento(maquinas, maquina_index)">
+          <span>❌</span>
+        </button>
+      </div>
+      <article role="tabpanel" v-if="maquina.esta_mostrando_detalles">
+        <ul class="tree-view has-container">
+          <li>
+            <details>
+              <summary>
+                Nombre:
+              </summary>
+              <div>
+                <input class="w_100" type="text" v-model="maquina.nombre" />
+              </div>
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary>
+                Descripción:
+              </summary>
+              <div>
+                <textarea class="w_100" type="number" v-model="maquina.descripcion"></textarea>
+              </div>
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary>
+                URL:
+              </summary>
+              <div>
+                <input class="w_100" type="text" v-model="maquina.url"/>
+              </div>
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary>
+                Puerto de URL:
+              </summary>
+              <div>
+                <input class="w_100" type="number" v-model="maquina.puerto_de_url"/>
+              </div>
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary>
+                Identificador único:
+              </summary>
+              <div>
+                <input class="w_100" type="text" v-model="maquina.identificador_unico" />
+              </div>
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary>
+                Proyectos:
+              </summary>
+              <div>
+                <button class="w_100" style="" v-on:click="() => agregar_proyecto(maquina)">Añadir proyecto</button>
+                <div v-for="proyecto, proyecto_index in maquina.proyectos" v-bind:key="'maquina-' + maquina_index + '-proyecto-' + proyecto_index" class="">
+                  <div class="horizontal_layout">
+                    <div class="w_100 titulo_de_pestanya subtitulo_de_pestanya">{{ proyecto.nombre || '?' }} (proyecto)</div>
+                    <button class="boton_lateral" v-on:click="() => alternar_elemento(proyecto)" :class="{active:proyecto.esta_mostrando_detalles}">
+                      <span>☰</span>
+                    </button>
+                    <button class="boton_lateral" v-on:click="() => eliminar_elemento(maquina.proyectos, proyecto_index)">
+                      <span>❌</span>
+                    </button>
+                  </div>
+                  <article role="tabpanel" v-if="proyecto.esta_mostrando_detalles">
+                    <ul class="tree-view has-container">
+                      <li>
+                        <details>
+                          <summary>
+                            <div>Nombre:</div>
+                          </summary>
+                          <div>
+                            <input class="w_100" type="text" v-model="proyecto.nombre" />
+                          </div>
+                        </details>
+                      </li>
+                      <li>
+                        <details>
+                          <summary>
+                            <div>Descripción:</div>
+                          </summary>
+                          <div>
+                            <textarea class="w_100" type="number" v-model="proyecto.descripcion"></textarea>
+                          </div>
+                        </details>
+                      </li>
+                      <li>
+                        <details>
+                          <summary>
+                            <div>Ruta de URL:</div>
+                          </summary>
+                          <div>
+                            <input class="w_100" type="text" v-model="proyecto.ruta_de_url" />
+                          </div>
+                        </details>
+                      </li>
+                      <li>
+                        <details>
+                          <summary>
+                            <div>Identificador único:</div>
+                          </summary>
+                          <div>
+                            <input class="w_100" type="text" v-model="proyecto.identificador_unico" />
+                          </div>
+                        </details>
+                      </li>
+                      <li>
+                        <details>
+                          <summary>
+                            <div>Nombre:</div>
+                          </summary>
+                          <div>
+                            <input class="w_100" type="text" v-model="proyecto.nombre" />
+                          </div>
+                        </details>
+                      </li>
+                      <li>
+                        <details>
+                          <summary>
+                            <div>Conexiones:</div>
+                          </summary>
+                          <div>
+                            <button class="w_100" style="" v-on:click="() => agregar_conexion(proyecto)">Añadir conexión</button>
+                            <div v-for="conexion, conexion_index in proyecto.conexiones" v-bind:key="'maquina-' + maquina_index + '-proyecto-' + proyecto_index + '-conexion-' + conexion_index" class="">
+                              <div class="horizontal_layout">
+                                <div class="w_100 titulo_de_pestanya subtitulo_de_pestanya">{{ conexion.nombre || '?' }} (conexión)</div>
+                                <button class="boton_lateral" v-on:click="() => alternar_elemento(conexion)" :class="{active:conexion.esta_mostrando_detalles}">
+                                  <span>☰</span>
+                                </button>
+                                <button class="boton_lateral" v-on:click="() => eliminar_elemento(proyecto.conexiones, conexion_index)">
+                                  <span>❌</span>
+                                </button>
+                              </div>
+                              <article role="tabpanel" v-if="conexion.esta_mostrando_detalles">
+                                <ul class="tree-view has-container">
+                                  <li>
+                                    <details>
+                                      <summary>
+                                        <div>Nombre:</div>
+                                      </summary>
+                                      <div>
+                                        <input class="w_100" type="text" v-model="conexion.nombre" />
+                                      </div>
+                                    </details>
+                                  </li>
+                                  <li>
+                                    <details>
+                                      <summary>
+                                        <div>Descripción:</div>
+                                      </summary>
+                                      <div>
+                                        <textarea class="w_100" type="number" v-model="conexion.descripcion"></textarea>
+                                      </div>
+                                    </details>
+                                  </li>
+                                  <li>
+                                    <details>
+                                      <summary>
+                                        <div>Usuario de base de datos:</div>
+                                      </summary>
+                                      <div>
+                                        <input class="w_100" type="text" v-model="conexion.usuario_de_base_de_datos" />
+                                      </div>
+                                    </details>
+                                  </li>
+                                  <li>
+                                    <details>
+                                      <summary>
+                                        <div>Contraseña de usuario:</div>
+                                      </summary>
+                                      <div>
+                                        <input class="w_100" type="text" v-model="conexion.contrasenia_de_base_de_datos" />
+                                      </div>
+                                    </details>
+                                  </li>
+                                  <li>
+                                    <details>
+                                      <summary>
+                                        <div>URL de base de datos:</div>
+                                      </summary>
+                                      <div>
+                                        <input class="w_100" type="text" v-model="conexion.url_de_base_de_datos" />
+                                      </div>
+                                    </details>
+                                  </li>
+                                  <li>
+                                    <details>
+                                      <summary>
+                                        <div>Puerto de base de datos:</div>
+                                      </summary>
+                                      <div>
+                                        <input class="w_100" type="text" v-model="conexion.puerto_de_base_de_datos" />
+                                      </div>
+                                    </details>
+                                  </li>
+                                  <li>
+                                    <details>
+                                      <summary>
+                                        <div>Nombre de base de datos:</div>
+                                      </summary>
+                                      <div>
+                                        <input class="w_100" type="text" v-model="conexion.nombre_de_base_de_datos" />
+                                      </div>
+                                    </details>
+                                  </li>
+                                  <li>
+                                    <details>
+                                      <summary>
+                                        <div>Identificador único:</div>
+                                      </summary>
+                                      <div>
+                                        <input class="w_100" type="text" v-model="conexion.identificador_unico" />
+                                      </div>
+                                    </details>
+                                  </li>
+                                </ul>
+                              </article>
+                            </div>
+                          </div>
+                        </details>
+                      </li>
+                    </ul>
+                  </article>
+                </div>
+              </div>
+            </details>
+          </li>
+        </ul>
+      </article>
+    </div>
+  </div>
+} con lógica {
+  retorno {
+    propiedad props como {
+      raiz: {
+        propiedad type como Object.
+        propiedad required como true.
+      }
+    }.
+    método data donde {
+      retorno {
+        maquinas: []
+      }.
+    }.
+    propiedad methods como {
+      método agregar_maquina con () donde {
+        creo variable nombre como "".
+        hasta que (nombre no es igual que "") y (nombre no está contenido en this.maquinas mapeado por su propiedad "nombre") {
+          asigno nombre como this.$window.prompt("¿Qué nombre de nueva máquina?").
+          si nombre no es tipo texto retorno.
+        }.
+        apendizo {
+          tipo: "máquina",
+          nombre,
+          descripcion: "",
+          url: "",
+          puerto_de_url: 80,
+          identificador_unico: "",
+          proyectos: []
+        } en this.maquinas.
+        hago this.$forceUpdate(true).
+      }.
+      método agregar_proyecto con (maquina) donde {
+        creo variable nombre como "".
+        hasta que (nombre no es igual que "") y (nombre no está contenido en maquina.proyectos mapeado por su propiedad "nombre") {
+          asigno nombre como this.$window.prompt("¿Qué nombre de nuevo proyecto?").
+          si nombre no es tipo texto retorno.
+        }.
+        apendizo {
+          tipo: "proyecto",
+          nombre,
+          descripcion: "",
+          ruta_de_url: "/",
+          identificador_unico: "",
+          conexiones: []
+        } en maquina.proyectos.
+        hago this.$forceUpdate(true).
+      }.
+      método agregar_conexion con (proyecto) donde {
+        creo variable nombre como "".
+        hasta que (nombre no es igual que "") y (nombre no está contenido en proyecto.conexiones mapeado por su propiedad "nombre") {
+          asigno nombre como this.$window.prompt("¿Qué nombre de nueva conexión?").
+          si nombre no es tipo texto retorno.
+        }.
+        apendizo {
+          tipo: "conexión",
+          nombre,
+          descripcion: "",
+          usuario_de_base_de_datos: "",
+          contrasenia_de_base_de_datos: "",
+          url_de_base_de_datos: "",
+          puerto_de_base_de_datos: "",
+          nombre_de_base_de_datos: "",
+          identificador_unico: ""
+        } en proyecto.conexiones.
+        hago this.$forceUpdate(true).
+      }.
+      método alternar_elemento con (elemento) donde {
+        si elemento.esta_mostrando_detalles asigno elemento.esta_mostrando_detalles como false;
+        y si no asigno elemento.esta_mostrando_detalles como true.
+        hago this.$forceUpdate(true).
+      }.
+      método eliminar_elemento con (lista, indice) donde {
+        hago lista.splice(indice, 1).
+        hago this.$forceUpdate(true).
+      }.
+    }.
+  }.
+}.
+
+creo PaginaDeInicio como un componente vue2 con nombre "PaginaDeInicio" con plantilla {
+  <div class="PaginaDeInicio Component">
+    <ConstructorDeBasesDeDatosDeCastelog />
+  </div>
+}.
+
+creo App como una aplicación vue2 con nombre "App" con rutas [{
+    propiedad path como "/".
+    propiedad name como "Home".
+    propiedad component como PaginaDeInicio.
+    propiedad props como {}.
+}] con traducciones {
+    propiedad es como {}.
+    propiedad en como {}.
+    propiedad ca como {}.
+} con plantilla {
+  <div class="App Component Castelog-app">
+    <router-view></router-view>
+  </div>
+} con estilos {
+    html {}
+    body {}
+    .Component {}
+    .App {}
+} con lógica {
+  retorno {
+    método data donde {
+      retorno {
+        
+      }.
+    }.
+    propiedad methods como {}.
+    propiedad watch como {}.
+    método beforeMount donde {}.
+    método mounted donde {}.
+  }.
+} montada en "#app".
