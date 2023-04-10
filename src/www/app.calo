@@ -43,8 +43,8 @@ importo api nativa.
 
 creo DiseniadorDeEsquemaDeConstructorDeBasesDeDatosDeCastelog como un componente vue2 con nombre "DiseniadorDeEsquemaDeConstructorDeBasesDeDatosDeCastelog" con plantilla {
   <div class="DiseniadorDeEsquemaDeConstructorDeBasesDeDatosDeCastelog Component">
-    <div class="titulo_de_pestanya">▦ Tablas:</div>
-    <div class="w_100 horizontal_layout" style="margin-top: 0px;">
+    <div class="titulo_de_pestanya">▦ Tablas</div>
+    <div class="w_100 horizontal_layout" style="margin-top: 1px; margin-bottom: 1px;">
       <button class="w_100" v-on:click="() => agregar_elemento(tablas, 'tabla')">
         <div class="emoji"> ➕ </div>
         <div class="para_tablet_o_mayor">Añadir tabla</div>
@@ -143,7 +143,7 @@ creo DiseniadorDeEsquemaDeConstructorDeBasesDeDatosDeCastelog como un componente
                 Columnas:
               </summary>
               <div>
-                <div class="titulo_de_pestanya">▥ Columnas:</div>
+                <div class="titulo_de_pestanya">▥ Columnas</div>
                 <button class="w_100" style="" v-on:click="() => agregar_elemento(tabla.columnas, 'columna')">Añadir columna</button>
                   <div v-for="columna, columna_index in tabla.columnas" v-bind:key="'tabla-' + tabla_index + '-columna-' + columna_index">
                     <div class="horizontal_layout">
@@ -293,7 +293,15 @@ creo DiseniadorDeEsquemaDeConstructorDeBasesDeDatosDeCastelog como un componente
 
 creo PanelFinalDeConstructorDeBasesDeDatosDeCastelog como un componente vue2 con nombre "PanelFinalDeConstructorDeBasesDeDatosDeCastelog" con plantilla {
   <div class="PanelFinalDeConstructorDeBasesDeDatosDeCastelog Component">
-    <button class="w_100" v-on:click="exportar">Exportar arquitectura</button>
+    <div>
+      <div class="titulo_de_pestanya"> ⭐ Descargar</div>
+      <div class="horizontal_layout" style="margin-top: 1px; margin-bottom: 0px;">
+        <button class="" v-on:click="importar">Importar de fichero</button>
+        <button class="" style="margin-left: 2px;" v-on:click="exportar">Exportar a fichero</button>
+      </div>
+      <input type="file" style="display:none;" ref="selector_de_fichero" accept="application/json" v-on:change="importar_fichero" />
+    </div>
+
   </div>
 } con lógica {
   retorno {
@@ -315,6 +323,28 @@ creo PanelFinalDeConstructorDeBasesDeDatosDeCastelog como un componente vue2 con
         si nombre es tipo indefinido retorno.
         hago window.download_file_by_source(nombre, datos textualizado).
       }.
+      método importar donde {
+        hago this.$refs.selector_de_fichero.click().
+      }.
+      método importar_fichero donde {
+        si this.$refs.selector_de_fichero.files.length es igual que 0 retorno.
+        desacoplo constantes [ fichero ] a partir de this.$refs.selector_de_fichero.files.
+        creo lector como un nuevo FileReader().
+        asigno lector.onload como una lambda con (evento) donde {
+          creo resultado_json como evento.target.result.
+          intento {
+            creo resultado como resultado_json parseado como JSON.
+            si (resultado no contiene clave "infraestructura") y (resultado no contiene clave "esquema") {
+              lanzo un nuevo Error("El fichero JSON no cumple con el formato propio de la aplicación").
+            }.
+            hago this.raiz.guardar_datos(resultado).
+          } en errores {
+            hago this.$window.alert("Error al importar fichero JSON: " + error.message).
+          }.
+        }.
+        asigno lector.onerror como una lambda con (evento) donde {}.
+        hago lector.readAsText(fichero).
+      }.
     }.
   }.
 }.
@@ -324,7 +354,7 @@ creo ConstructorDeBasesDeDatosDeCastelog como un componente vue2 con nombre "Con
     <section class="tabs">
       <menu role="tablist" aria-label="InfraestructuraDeBaseDeDatos">
         <button role="tab" v-on:click="() => seleccionar_pestania('infraestructura')" :aria-selected="pestania_seleccionada === 'infraestructura'">
-          <div class="emoji"> 🖥️ </div>
+          <div class="emoji"> 📡 </div>
           <div class="para_tablet_o_mayor" style="white-space: nowrap;">Infraestructura</div>
         </button>
         <button role="tab" v-on:click="() => seleccionar_pestania('esquema')" :aria-selected="pestania_seleccionada === 'esquema'">
@@ -363,8 +393,8 @@ creo ConstructorDeBasesDeDatosDeCastelog como un componente vue2 con nombre "Con
         creo esquema como this.$refs.control_de_esquema.tablas.
         retorno { infraestructura, esquema }.
       }.
-      método guardar_datos donde {
-        creo datos como this.obtener_datos().
+      método guardar_datos con (nuevos_datos) donde {
+        creo datos como cuando nuevos_datos entonces nuevos_datos si no this.obtener_datos().
         asigno localStorage._constructor_de_bases_de_datos_de_castelog_ como datos textualizado.
       }.
       método cargar_datos donde {
@@ -382,8 +412,8 @@ creo ConstructorDeBasesDeDatosDeCastelog como un componente vue2 con nombre "Con
 
 creo DiseniadorDeInfraestructuraDeConstructorDeBasesDeDatosDeCastelog como un componente vue2 con nombre "DiseniadorDeInfraestructuraDeConstructorDeBasesDeDatosDeCastelog" con plantilla {
   <div class="DiseniadorDeInfraestructuraDeConstructorDeBasesDeDatosDeCastelog Component win7">
-    <div class="titulo_de_pestanya">🖥️ Máquinas:</div>
-    <div class="w_100 horizontal_layout" style="margin-top: 0px;">
+    <div class="titulo_de_pestanya">🖥️ Máquinas</div>
+    <div class="w_100 horizontal_layout" style="margin-top: 1px; margin-bottom: 1px;">
       <button class="w_100" v-on:click="() => agregar_maquina()">
         <div class="emoji"> ➕ </div>
         <div class="para_tablet_o_mayor">Añadir máquina</div>

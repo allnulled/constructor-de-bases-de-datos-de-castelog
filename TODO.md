@@ -1,4 +1,13 @@
-+ Prompt preguntando nombre de elemento (maquina, proyecto, ...)
-  + Con bucle hasta que sea nombre valido
-+ Botón de aceptar para ir a la siguiente pestanya
-+ Seguir con el siguiente
++ continuar para completar un CRUD
+  + que use el JSON como seed
+    + de un seeder para IndexedDB
+      + con RanasDB
+      + que permita todo el royo:
+        + form controls
+        + form groups
+        + object references
+        + list references
+        + querying
+        + sorting
+        + paging
+        + ...

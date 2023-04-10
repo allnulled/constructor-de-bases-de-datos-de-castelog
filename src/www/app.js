@@ -57589,8 +57589,8 @@ Castelog.variables.operador.exclamacion.ejs.ui.dom.elemento = function(elemento 
 
 const DiseniadorDeEsquemaDeConstructorDeBasesDeDatosDeCastelog = Castelog.metodos.un_componente_vue2("DiseniadorDeEsquemaDeConstructorDeBasesDeDatosDeCastelog",
   "<div class=\"DiseniadorDeEsquemaDeConstructorDeBasesDeDatosDeCastelog Component\">"
- + "    <div class=\"titulo_de_pestanya\">▦ Tablas:</div>"
- + "    <div class=\"w_100 horizontal_layout\" style=\"margin-top: 0px;\">"
+ + "    <div class=\"titulo_de_pestanya\">▦ Tablas</div>"
+ + "    <div class=\"w_100 horizontal_layout\" style=\"margin-top: 1px; margin-bottom: 1px;\">"
  + "      <button class=\"w_100\" v-on:click=\"() => agregar_elemento(tablas, 'tabla')\">"
  + "        <div class=\"emoji\"> ➕ </div>"
  + "        <div class=\"para_tablet_o_mayor\">Añadir tabla</div>"
@@ -57689,7 +57689,7 @@ const DiseniadorDeEsquemaDeConstructorDeBasesDeDatosDeCastelog = Castelog.metodo
  + "                Columnas:"
  + "              </summary>"
  + "              <div>"
- + "                <div class=\"titulo_de_pestanya\">▥ Columnas:</div>"
+ + "                <div class=\"titulo_de_pestanya\">▥ Columnas</div>"
  + "                <button class=\"w_100\" style=\"\" v-on:click=\"() => agregar_elemento(tabla.columnas, 'columna')\">Añadir columna</button>"
  + "                  <div v-for=\"columna, columna_index in tabla.columnas\" v-bind:key=\"'tabla-' + tabla_index + '-columna-' + columna_index\">"
  + "                    <div class=\"horizontal_layout\">"
@@ -57864,7 +57864,15 @@ throw error;
   null);
 const PanelFinalDeConstructorDeBasesDeDatosDeCastelog = Castelog.metodos.un_componente_vue2("PanelFinalDeConstructorDeBasesDeDatosDeCastelog",
   "<div class=\"PanelFinalDeConstructorDeBasesDeDatosDeCastelog Component\">"
- + "    <button class=\"w_100\" v-on:click=\"exportar\">Exportar arquitectura</button>"
+ + "    <div>"
+ + "      <div class=\"titulo_de_pestanya\"> ⭐ Descargar</div>"
+ + "      <div class=\"horizontal_layout\" style=\"margin-top: 1px; margin-bottom: 0px;\">"
+ + "        <button class=\"\" v-on:click=\"importar\">Importar de fichero</button>"
+ + "        <button class=\"\" style=\"margin-left: 2px;\" v-on:click=\"exportar\">Exportar a fichero</button>"
+ + "      </div>"
+ + "      <input type=\"file\" style=\"display:none;\" ref=\"selector_de_fichero\" accept=\"application/json\" v-on:change=\"importar_fichero\" />"
+ + "    </div>"
+ + ""
  + "  </div>",
   function(component) {return { props:{ raiz:{ type:Object,
 required:true
@@ -57893,6 +57901,45 @@ console.log(error);
 throw error;
 }
 
+},
+importar() {try {
+this.$refs.selector_de_fichero.click(  );
+} catch(error) {
+console.log(error);
+throw error;
+}
+
+},
+importar_fichero() {try {
+if(this.$refs.selector_de_fichero.files.length === 0) {
+return;
+}
+const [ fichero ] = this.$refs.selector_de_fichero.files;
+const lector = new FileReader(  );
+lector.onload = ( evento ) => {try {
+const resultado_json = evento.target.result;
+try {
+const resultado = JSON.parse(resultado_json);
+if(( (!("infraestructura" in resultado)) ) && ( (!("esquema" in resultado)) )) {
+throw new Error( "El fichero JSON no cumple con el formato propio de la aplicación" );
+}
+this.raiz.guardar_datos( resultado );
+} catch(error) {
+this.$window.alert( "Error al importar fichero JSON: " + error.message );}
+} catch(error) {
+console.log(error);
+throw error;
+}
+
+};
+lector.onerror = ( evento ) => {
+};
+lector.readAsText( fichero );
+} catch(error) {
+console.log(error);
+throw error;
+}
+
 }
 }
 };},
@@ -57902,7 +57949,7 @@ const ConstructorDeBasesDeDatosDeCastelog = Castelog.metodos.un_componente_vue2(
  + "    <section class=\"tabs\">"
  + "      <menu role=\"tablist\" aria-label=\"InfraestructuraDeBaseDeDatos\">"
  + "        <button role=\"tab\" v-on:click=\"() => seleccionar_pestania('infraestructura')\" :aria-selected=\"pestania_seleccionada === 'infraestructura'\">"
- + "          <div class=\"emoji\"> 🖥️ </div>"
+ + "          <div class=\"emoji\"> 📡 </div>"
  + "          <div class=\"para_tablet_o_mayor\" style=\"white-space: nowrap;\">Infraestructura</div>"
  + "        </button>"
  + "        <button role=\"tab\" v-on:click=\"() => seleccionar_pestania('esquema')\" :aria-selected=\"pestania_seleccionada === 'esquema'\">"
@@ -57954,8 +58001,8 @@ throw error;
 }
 
 },
-guardar_datos() {try {
-const datos = this.obtener_datos(  );
+guardar_datos( nuevos_datos ) {try {
+const datos = ( nuevos_datos ? nuevos_datos : this.obtener_datos(  ) );
 localStorage._constructor_de_bases_de_datos_de_castelog_ = JSON.stringify(datos, null, 2);
 } catch(error) {
 console.log(error);
@@ -57997,8 +58044,8 @@ throw error;
   null);
 const DiseniadorDeInfraestructuraDeConstructorDeBasesDeDatosDeCastelog = Castelog.metodos.un_componente_vue2("DiseniadorDeInfraestructuraDeConstructorDeBasesDeDatosDeCastelog",
   "<div class=\"DiseniadorDeInfraestructuraDeConstructorDeBasesDeDatosDeCastelog Component win7\">"
- + "    <div class=\"titulo_de_pestanya\">🖥️ Máquinas:</div>"
- + "    <div class=\"w_100 horizontal_layout\" style=\"margin-top: 0px;\">"
+ + "    <div class=\"titulo_de_pestanya\">🖥️ Máquinas</div>"
+ + "    <div class=\"w_100 horizontal_layout\" style=\"margin-top: 1px; margin-bottom: 1px;\">"
  + "      <button class=\"w_100\" v-on:click=\"() => agregar_maquina()\">"
  + "        <div class=\"emoji\"> ➕ </div>"
  + "        <div class=\"para_tablet_o_mayor\">Añadir máquina</div>"
