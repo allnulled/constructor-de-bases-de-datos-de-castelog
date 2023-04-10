@@ -57983,6 +57983,9 @@ methods:{ exportar() {try {
 const datos = this.raiz.obtener_datos(  );
 const nombre = this.$window.prompt( "¿Qué nombre de fichero?",
 "arquitectura.calo-db.json" );
+if(typeof nombre === 'undefined') {
+return;
+}
 window.download_file_by_source( nombre,
 JSON.stringify(datos, null, 2) );
 } catch(error) {
