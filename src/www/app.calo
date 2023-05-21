@@ -320,7 +320,7 @@ creo PanelFinalDeConstructorDeBasesDeDatosDeCastelog como un componente vue2 con
       método exportar donde {
         creo datos como this.raiz.obtener_datos().
         creo nombre como this.$window.prompt("¿Qué nombre de fichero?", "arquitectura.calo-db.json").
-        si nombre es tipo indefinido retorno.
+        si no nombre retorno.
         hago window.download_file_by_source(nombre, datos textualizado).
       }.
       método importar donde {
