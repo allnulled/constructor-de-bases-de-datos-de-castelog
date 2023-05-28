@@ -4,6 +4,7 @@
   "description": "Construcción de infraestructura y esquema de datos de Castelog",
   "main": "src/index.html",
   "scripts": {
+    "build": "node dev/build.js",
     "test": "npx http-server ./src/www -c-1"
   },
   "keywords": [],

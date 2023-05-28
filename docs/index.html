@@ -35,7 +35,7 @@
 (function(factory_original, filename, metadata) {
     try {
         const require_ = (typeof require === "function") ? require : function(id) { return ((typeof(require) === 'function') ? require : (...args) => {
-    return Castelog.metodos.un_modulo_importado(id, "/home/carlos/Escritorio/Nuevo3/constructor-de-bases-de-datos-de-castelog/src/www/js", "/home/carlos/Escritorio/Nuevo3/democracia-2.0");
+    return Castelog.metodos.un_modulo_importado(id, "/home/carlos/Escritorio/Nuevo3/constructor-de-bases-de-datos-de-castelog/src/www/js", "/home/carlos/Escritorio/Nuevo3/constructor-de-bases-de-datos-de-castelog");
 })(id);
 };
         const module_ = (typeof module !== "undefined") ? module : { exports:undefined };
@@ -63,7 +63,7 @@
         if((typeof(Castelog) !== "undefined")
         && (typeof(Castelog.metodos) !== "undefined")
         && (typeof(Castelog.metodos.un_modulo_exportado) === "function")) {
-            Castelog.metodos.un_modulo_exportado(name, output, factory, "/home/carlos/Escritorio/Nuevo3/constructor-de-bases-de-datos-de-castelog/src/www/js", "/home/carlos/Escritorio/Nuevo3/democracia-2.0" );
+            Castelog.metodos.un_modulo_exportado(name, output, factory, "/home/carlos/Escritorio/Nuevo3/constructor-de-bases-de-datos-de-castelog/src/www/js", "/home/carlos/Escritorio/Nuevo3/constructor-de-bases-de-datos-de-castelog" );
             envs.push("Castelog.modulos[" + JSON.stringify(name) + "].value"); 
         }
         // console.log("Exportado módulo calo " + JSON.stringify(name) + " en:\n  - " + envs.join("\n  - "));
@@ -92,7 +92,7 @@
 (function(factory_original, filename, metadata) {
     try {
         const require_ = (typeof require === "function") ? require : function(id) { return ((typeof(require) === 'function') ? require : (...args) => {
-    return Castelog.metodos.un_modulo_importado(id, "/home/carlos/Escritorio/Nuevo3/constructor-de-bases-de-datos-de-castelog/src/www", "/home/carlos/Escritorio/Nuevo3/democracia-2.0");
+    return Castelog.metodos.un_modulo_importado(id, "/home/carlos/Escritorio/Nuevo3/constructor-de-bases-de-datos-de-castelog/src/www", "/home/carlos/Escritorio/Nuevo3/constructor-de-bases-de-datos-de-castelog");
 })(id);
 };
         const module_ = (typeof module !== "undefined") ? module : { exports:undefined };
@@ -120,7 +120,7 @@
         if((typeof(Castelog) !== "undefined")
         && (typeof(Castelog.metodos) !== "undefined")
         && (typeof(Castelog.metodos.un_modulo_exportado) === "function")) {
-            Castelog.metodos.un_modulo_exportado(name, output, factory, "/home/carlos/Escritorio/Nuevo3/constructor-de-bases-de-datos-de-castelog/src/www", "/home/carlos/Escritorio/Nuevo3/democracia-2.0" );
+            Castelog.metodos.un_modulo_exportado(name, output, factory, "/home/carlos/Escritorio/Nuevo3/constructor-de-bases-de-datos-de-castelog/src/www", "/home/carlos/Escritorio/Nuevo3/constructor-de-bases-de-datos-de-castelog" );
             envs.push("Castelog.modulos[" + JSON.stringify(name) + "].value"); 
         }
         // console.log("Exportado módulo calo " + JSON.stringify(name) + " en:\n  - " + envs.join("\n  - "));
@@ -58123,7 +58123,7 @@ const PanelFinalDeConstructorDeBasesDeDatosDeCastelog = Castelog.metodos.un_comp
  + "        <button class=\"\" v-on:click=\"importar\">Importar de fichero</button>"
  + "        <button class=\"\" style=\"margin-left: 2px;\" v-on:click=\"exportar\">Exportar a fichero</button>"
  + "      </div>"
- + "      <input type=\"file\" style=\"display:none;\" ref=\"selector_de_fichero\" accept=\"application/json\" v-on:change=\"importar_fichero\" />"
+ + "      <input type=\"file\" style=\"display:none;\" ref=\"selector_de_fichero\" accept=\"application/json\" v-on:input=\"importar_fichero\" />"
  + "    </div>"
  + ""
  + "  </div>",
@@ -58177,6 +58177,7 @@ if(( (!("infraestructura" in resultado)) ) && ( (!("esquema" in resultado)) )) {
 throw new Error( "El fichero JSON no cumple con el formato propio de la aplicación" );
 }
 this.raiz.guardar_datos( resultado );
+this.$window.location.reload(  );
 } catch(error) {
 this.$window.alert( "Error al importar fichero JSON: " + error.message );}
 } catch(error) {

@@ -299,7 +299,7 @@ creo PanelFinalDeConstructorDeBasesDeDatosDeCastelog como un componente vue2 con
         <button class="" v-on:click="importar">Importar de fichero</button>
         <button class="" style="margin-left: 2px;" v-on:click="exportar">Exportar a fichero</button>
       </div>
-      <input type="file" style="display:none;" ref="selector_de_fichero" accept="application/json" v-on:change="importar_fichero" />
+      <input type="file" style="display:none;" ref="selector_de_fichero" accept="application/json" v-on:input="importar_fichero" />
     </div>
 
   </div>
@@ -338,6 +338,7 @@ creo PanelFinalDeConstructorDeBasesDeDatosDeCastelog como un componente vue2 con
               lanzo un nuevo Error("El fichero JSON no cumple con el formato propio de la aplicación").
             }.
             hago this.raiz.guardar_datos(resultado).
+            hago this.$window.location.reload().
           } en errores {
             hago this.$window.alert("Error al importar fichero JSON: " + error.message).
           }.

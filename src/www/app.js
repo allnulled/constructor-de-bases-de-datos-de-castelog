@@ -57991,7 +57991,7 @@ const PanelFinalDeConstructorDeBasesDeDatosDeCastelog = Castelog.metodos.un_comp
  + "        <button class=\"\" v-on:click=\"importar\">Importar de fichero</button>"
  + "        <button class=\"\" style=\"margin-left: 2px;\" v-on:click=\"exportar\">Exportar a fichero</button>"
  + "      </div>"
- + "      <input type=\"file\" style=\"display:none;\" ref=\"selector_de_fichero\" accept=\"application/json\" v-on:change=\"importar_fichero\" />"
+ + "      <input type=\"file\" style=\"display:none;\" ref=\"selector_de_fichero\" accept=\"application/json\" v-on:input=\"importar_fichero\" />"
  + "    </div>"
  + ""
  + "  </div>",
@@ -58045,6 +58045,7 @@ if(( (!("infraestructura" in resultado)) ) && ( (!("esquema" in resultado)) )) {
 throw new Error( "El fichero JSON no cumple con el formato propio de la aplicación" );
 }
 this.raiz.guardar_datos( resultado );
+this.$window.location.reload(  );
 } catch(error) {
 this.$window.alert( "Error al importar fichero JSON: " + error.message );}
 } catch(error) {
