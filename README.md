@@ -58,7 +58,7 @@ Este software solo genera un JSON. Muchos softwares generan un JSON.
 
 Pero la idea es poder representar las bases de datos sin límites de extensión. Por ejemplo, una red de computadoras al servicio de un *Estado digitalizado* donde el papel-moneda o la anonimidad económica, ya no son posibles, podría empezarse así, separando cada temática de estado:
 
-[./docs/images/Constructor-de-bases-de-datos-de-calo.infraestructura.png](./docs/images/Constructor-de-bases-de-datos-de-calo.infraestructura.png)
+![./docs/images/Constructor-de-bases-de-datos-de-calo.infraestructura.png](./docs/images/Constructor-de-bases-de-datos-de-calo.infraestructura.png)
 
 
 ## Licencia
