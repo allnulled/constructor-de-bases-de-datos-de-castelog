@@ -334,13 +334,13 @@ creo ConstructorDeBasesDeDatosDeCastelog como un componente vue2 con nombre "Con
   <div class="ConstructorDeBasesDeDatosDeCastelog Component win7">
     <section class="tabs">
       <menu role="tablist" aria-label="InfraestructuraDeBaseDeDatos">
-        <button role="tab" v-on:click="() => seleccionar_pestania('infraestructura')" :aria-selected="pestania_seleccionada === 'infraestructura'">
-          <div class="emoji"> 📡 </div>
-          <div class="para_tablet_o_mayor" style="white-space: nowrap;">Infraestructura</div>
-        </button>
         <button role="tab" v-on:click="() => seleccionar_pestania('esquema')" :aria-selected="pestania_seleccionada === 'esquema'">
           <div class="emoji"> ▤ </div>
           <div class="para_tablet_o_mayor" style="white-space: nowrap;">Esquema</div>
+        </button>
+        <button role="tab" v-on:click="() => seleccionar_pestania('infraestructura')" :aria-selected="pestania_seleccionada === 'infraestructura'">
+          <div class="emoji"> 📡 </div>
+          <div class="para_tablet_o_mayor" style="white-space: nowrap;">Infraestructura</div>
         </button>
         <button role="tab" v-on:click="() => seleccionar_pestania('datos')" :aria-selected="pestania_seleccionada === 'datos'">
           <div class="emoji"> ⭐ </div>
@@ -362,7 +362,7 @@ creo ConstructorDeBasesDeDatosDeCastelog como un componente vue2 con nombre "Con
   retorno {
     método data donde {
       retorno {
-        pestania_seleccionada: "infraestructura"
+        pestania_seleccionada: "esquema"
       }.
     }.
     propiedad methods como {

@@ -358,13 +358,13 @@ const ConstructorDeBasesDeDatosDeCastelog = Castelog.metodos.un_componente_vue2(
   "<div class=\"ConstructorDeBasesDeDatosDeCastelog Component win7\">"
  + "    <section class=\"tabs\">"
  + "      <menu role=\"tablist\" aria-label=\"InfraestructuraDeBaseDeDatos\">"
- + "        <button role=\"tab\" v-on:click=\"() => seleccionar_pestania('infraestructura')\" :aria-selected=\"pestania_seleccionada === 'infraestructura'\">"
- + "          <div class=\"emoji\"> 📡 </div>"
- + "          <div class=\"para_tablet_o_mayor\" style=\"white-space: nowrap;\">Infraestructura</div>"
- + "        </button>"
  + "        <button role=\"tab\" v-on:click=\"() => seleccionar_pestania('esquema')\" :aria-selected=\"pestania_seleccionada === 'esquema'\">"
  + "          <div class=\"emoji\"> ▤ </div>"
  + "          <div class=\"para_tablet_o_mayor\" style=\"white-space: nowrap;\">Esquema</div>"
+ + "        </button>"
+ + "        <button role=\"tab\" v-on:click=\"() => seleccionar_pestania('infraestructura')\" :aria-selected=\"pestania_seleccionada === 'infraestructura'\">"
+ + "          <div class=\"emoji\"> 📡 </div>"
+ + "          <div class=\"para_tablet_o_mayor\" style=\"white-space: nowrap;\">Infraestructura</div>"
  + "        </button>"
  + "        <button role=\"tab\" v-on:click=\"() => seleccionar_pestania('datos')\" :aria-selected=\"pestania_seleccionada === 'datos'\">"
  + "          <div class=\"emoji\"> ⭐ </div>"
@@ -383,7 +383,7 @@ const ConstructorDeBasesDeDatosDeCastelog = Castelog.metodos.un_componente_vue2(
  + "    </article>"
  + "  </div>",
   function(component) {return { data() {try {
-return { pestania_seleccionada:"infraestructura"
+return { pestania_seleccionada:"esquema"
 };
 } catch(error) {
 console.log(error);
