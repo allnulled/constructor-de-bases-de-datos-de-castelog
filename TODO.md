@@ -1,13 +1,5 @@
-+ continuar para completar un CRUD
-  + que use el JSON como seed
-    + de un seeder para IndexedDB
-      + con RanasDB
-      + que permita todo el royo:
-        + form controls
-        + form groups
-        + object references
-        + list references
-        + querying
-        + sorting
-        + paging
-        + ...
+[x] Eliminar campos fijos no usados
+[x] Permitir formato JSON para los campos de atributo
+[ ] Permitir el drag'n'drop entre atributos para cambiar el orden
+  [ ] No es tan fácil.
+[x] Dejar un espacio por abajo con un min-height.

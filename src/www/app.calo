@@ -41,6 +41,14 @@ Ejecutable como documento HTML5
       .titulo_de_pestanya.subtitulo_de_pestanya {
         cursor: pointer;
       }
+      .nobreakline {
+        white-space: nowrap;
+      }
+      .correccion_de_checkbox {
+        min-width: 0px;
+        width: 0px;
+        padding: 0px;
+      }
     </style>
 </head>
 <body><div id="app"></div></body>.
@@ -49,16 +57,16 @@ creo DiseniadorDeEsquemaDeConstructorDeBasesDeDatosDeCastelog como un componente
   <div class="DiseniadorDeEsquemaDeConstructorDeBasesDeDatosDeCastelog Component">
     <div class="titulo_de_pestanya">▦ Tablas</div>
     <div class="w_100 horizontal_layout" style="margin-top: 1px; margin-bottom: 1px;">
-      <button class="w_100" v-on:click="() => agregar_elemento(tablas, 'tabla')">
+      <button class="w_100" v-on:click="() => agregar_tabla()">
         <div class="emoji"> ➕ </div>
         <div class="para_tablet_o_mayor">Añadir tabla</div>
       </button>
-      <button class="boton_minimal margen_izquierda_item">
-        <div class="emoji" v-on:click="() => raiz.guardar_datos()"> ✔ </div>
+      <button class="boton_minimal margen_izquierda_item" v-on:click="() => raiz.guardar_datos()">
+        <div class="emoji"> ✔ </div>
         <div class="para_tablet_o_mayor" style="padding-left: 4px; padding-right: 10px;">Guardar</div>
       </button>
-      <button class="boton_minimal margen_izquierda_item">
-        <div class="emoji" v-on:click="() => raiz.cargar_datos()"> ♻️ </div>
+      <button class="boton_minimal margen_izquierda_item" v-on:click="() => raiz.cargar_datos()">
+        <div class="emoji"> ♻️ </div>
         <div class="para_tablet_o_mayor" style="padding-left: 4px; padding-right: 10px;">Cargar</div>
       </button>
     </div>
@@ -84,40 +92,10 @@ creo DiseniadorDeEsquemaDeConstructorDeBasesDeDatosDeCastelog como un componente
           <li>
             <details>
               <summary>
-                Descripción:
+                Atributos de tabla:
               </summary>
               <div>
-                <textarea class="w_100" v-model="tabla.descripcion"></textarea>
-              </div>
-            </details>
-          </li>
-          <li>
-            <details>
-              <summary>
-                Ruta de URL de tabla:
-              </summary>
-              <div>
-                <input class="w_100" type="text" v-model="tabla.ruta_de_url_de_tabla" />
-              </div>
-            </details>
-          </li>
-          <li>
-            <details>
-              <summary>
-                Identificador único:
-              </summary>
-              <div>
-                <input class="w_100" type="text" v-model="tabla.identificador_unico" />
-              </div>
-            </details>
-          </li>
-          <li>
-            <details>
-              <summary>
-                Atributos de tabla extra:
-              </summary>
-              <div>
-                <button class="w_100" style="" v-on:click="() => agregar_elemento(tabla.atributos_de_tabla, 'atributo de tabla')">Añadir atributo</button>
+                <button class="w_100" style="" v-on:click="() => agregar_atributo_de_tabla(tabla_index)">Añadir atributo</button>
                 <ul class="tree-view has-container">
                   <li v-for="atributo, atributo_index in tabla.atributos_de_tabla" v-bind:key="'tabla-' + tabla_index + '-atributo-' + atributo_index">
                     <div class="horizontal_layout">
@@ -125,7 +103,11 @@ creo DiseniadorDeEsquemaDeConstructorDeBasesDeDatosDeCastelog como un componente
                         <details>
                           <summary>{{ atributo_index }}</summary>
                           <div>
-                            <textarea class="w_100" type="text" v-model="tabla.atributos_de_tabla[atributo_index]"></textarea>
+                            <div>
+                              <input class="correccion_de_checkbox" type="checkbox" :id="'tabla-' + tabla_index + '-atributo-' + atributo_index" v-model="tabla.atributos_de_tabla[atributo_index].es_json" />
+                              <label :for="'tabla-' + tabla_index + '-atributo-' + atributo_index">como JSON</label>
+                            </div>
+                            <textarea class="w_100" type="text" v-model="tabla.atributos_de_tabla[atributo_index].valor"></textarea>
                           </div>
                         </details>
                       </div>
@@ -145,7 +127,7 @@ creo DiseniadorDeEsquemaDeConstructorDeBasesDeDatosDeCastelog como un componente
               </summary>
               <div>
                 <div class="titulo_de_pestanya">▥ Columnas</div>
-                <button class="w_100" style="" v-on:click="() => agregar_elemento(tabla.columnas, 'columna')">Añadir columna</button>
+                <button class="w_100" style="" v-on:click="() => agregar_columna(tabla_index)">Añadir columna</button>
                   <div v-for="columna, columna_index in tabla.columnas" v-bind:key="'tabla-' + tabla_index + '-columna-' + columna_index">
                     <div class="horizontal_layout">
                       <div class="w_100 titulo_de_pestanya subtitulo_de_pestanya" v-on:click="() => alternar_elemento(columna)" :class="{active:columna.esta_mostrando_detalles}">{{ columna.nombre || '?' }} (columna)</div>
@@ -168,48 +150,22 @@ creo DiseniadorDeEsquemaDeConstructorDeBasesDeDatosDeCastelog como un componente
                         <li>
                           <details>
                             <summary>
-                              Descripción:
+                              Atributos de columna:
                             </summary>
                             <div>
-                              <textarea class="w_100" v-model="columna.descripcion"></textarea>
-                            </div>
-                          </details>
-                        </li>
-                        <li>
-                          <details>
-                            <summary>
-                              Ruta de URL de columna:
-                            </summary>
-                            <div>
-                              <input class="w_100" type="text" v-model="columna.ruta_de_url_de_columna" />
-                            </div>
-                          </details>
-                        </li>
-                        <li>
-                          <details>
-                            <summary>
-                              Identificador único:
-                            </summary>
-                            <div>
-                              <input class="w_100" type="text" v-model="columna.identificador_unico" />
-                            </div>
-                          </details>
-                        </li>
-                        <li>
-                          <details>
-                            <summary>
-                              Atributos de columna extra:
-                            </summary>
-                            <div>
-                              <button class="w_100" style="" v-on:click="() => agregar_elemento(columna.atributos_de_columna, 'atributo de columna', { clave:'', valor:'' })">Añadir atributo</button>
-                              <ul class="tree-view has-container">
+                              <button class="w_100" style="" v-on:click="() => agregar_atributo_de_columna(tabla_index, columna_index)">Añadir atributo</button>
+                              <ul>
                                 <li v-for="atributo, atributo_index in columna.atributos_de_columna" v-bind:key="'tabla-' + tabla_index + '-atributo-' + atributo_index">
                                   <div class="horizontal_layout">
                                     <div class="w_100">
                                       <details>
                                         <summary>{{ atributo_index }}</summary>
                                         <div>
-                                          <textarea class="w_100" type="text" v-model="columna.atributos_de_columna[atributo_index]"></textarea>
+                                          <div>
+                                            <input class="correccion_de_checkbox" type="checkbox" :id="'tabla-' + tabla_index + '-columna-' + columna_index + '-atributo-' + atributo_index" v-model="columna.atributos_de_columna[atributo_index].es_json"/>
+                                            <label :for="'tabla-' + tabla_index + '-columna-' + columna_index + '-atributo-' + atributo_index">como JSON</label>
+                                          </div>
+                                          <textarea class="w_100" type="text" v-model="columna.atributos_de_columna[atributo_index].valor"></textarea>
                                         </div>
                                       </details>
                                     </div>
@@ -246,35 +202,61 @@ creo DiseniadorDeEsquemaDeConstructorDeBasesDeDatosDeCastelog como un componente
       }.
     }.
     propiedad methods como {
-      método agregar_elemento con (elementos, tipo_de_elemento o en su defecto "elemento", valor_base o en su defecto {}) donde {
+      método pedir_nombre con (elementos, tipo_de_elemento) donde {
         creo variable nombre como "".
         hasta que (nombre no es igual que "") y (nombre no está contenido en un conjunto de claves del objeto elementos) {
           asigno nombre como this.$window.prompt("¿Qué nombre de " + tipo_de_elemento + "?").
-          si nombre no es tipo texto retorno.
+          si nombre no es tipo texto retorno false.
         }.
-        asigno elementos[nombre] como {
-          tipo: tipo_de_elemento,
+        retorno nombre.
+      }.
+      método agregar_tabla con () donde {
+        creo nombre como this.pedir_nombre(this.tablas, "tabla").
+        si nombre es tipo indefinido retorno.
+        asigno this.tablas[nombre] como {
+          tipo: "tabla",
           nombre,
           descripcion: "",
-          identificador_unico: ""
-        } extendido por cuando tipo_de_elemento es igual que "tabla" entonces {
-          ruta_de_url_de_tabla: "/",
           atributos_de_tabla: {},
           columnas: {},
           esta_mostrando_detalles: false
-        } si no cuando tipo_de_elemento es igual que "columna" entonces {
-          ruta_de_url_de_columna: "/",
-          atributos_de_columna: {},
-          tipo_de_dato: "texto",
-          es_identificador: false,
-          es_clave_unica: false,
-          es_clave_foranea: false,
-          es_columna_virtual: false,
-          tiene_valor_por_defecto: null,
+        }.
+        hago this.$forceUpdate(true).
+      }.
+      método agregar_atributo_de_tabla con (tabla_id) donde {
+        creo nombre como this.pedir_nombre(this.tablas[tabla_id].atributos_de_tabla, "atributo de tabla").
+        si nombre es tipo indefinido retorno.
+        asigno this.tablas[tabla_id].atributos_de_tabla[nombre] como {
+          tipo: "atributo de tabla",
+          nombre,
+          valor: "",
+          es_json: false,
           esta_mostrando_detalles: false
-        } si no {} también extendido por valor_base.
-        si tipo_de_elemento es igual que "atributo de tabla" asigno elementos[nombre] como "".
-        si tipo_de_elemento es igual que "atributo de columna" asigno elementos[nombre] como "".
+        }.
+        hago this.$forceUpdate(true).
+      }.
+      método agregar_columna con (tabla_id) donde {
+        creo nombre como this.pedir_nombre(this.tablas[tabla_id].columnas, "columna").
+        si nombre es tipo indefinido retorno.
+        asigno this.tablas[tabla_id].columnas[nombre] como {
+          tipo: "columna",
+          nombre,
+          descripcion: "",
+          atributos_de_columna: {},
+          esta_mostrando_detalles: false
+        }.
+        hago this.$forceUpdate(true).
+      }.
+      método agregar_atributo_de_columna con (tabla_id, columna_id) donde {
+        creo nombre como this.pedir_nombre(this.tablas[tabla_id].columnas[columna_id].atributos_de_columna, "atributo de columna").
+        si nombre es tipo indefinido retorno.
+        asigno this.tablas[tabla_id].columnas[columna_id].atributos_de_columna[nombre] como {
+          tipo: "atributo de columna",
+          nombre,
+          valor: "",
+          es_json: false,
+          esta_mostrando_detalles: false
+        }.
         hago this.$forceUpdate(true).
       }.
       método alternar_elemento con (elemento) donde {
@@ -414,15 +396,15 @@ creo DiseniadorDeInfraestructuraDeConstructorDeBasesDeDatosDeCastelog como un co
     <div class="titulo_de_pestanya">🖥️ Máquinas</div>
     <div class="w_100 horizontal_layout" style="margin-top: 1px; margin-bottom: 1px;">
       <button class="w_100" v-on:click="() => agregar_maquina()">
-        <div class="emoji"> ➕ </div>
-        <div class="para_tablet_o_mayor">Añadir máquina</div>
+        <span class="emoji"> ➕ </span>
+        <span class="para_tablet_o_mayor">Añadir máquina</span>
       </button>
-      <button class="boton_minimal margen_izquierda_item">
-        <div class="emoji" v-on:click="() => raiz.guardar_datos()"> ✔ </div>
+      <button class="boton_minimal margen_izquierda_item" v-on:click="() => raiz.guardar_datos()">
+        <div class="emoji"> ✔ </div>
         <div class="para_tablet_o_mayor" style="padding-left: 4px; padding-right: 10px;">Guardar</div>
       </button>
-      <button class="boton_minimal margen_izquierda_item">
-        <div class="emoji" v-on:click="() => raiz.cargar_datos()"> ♻️ </div>
+      <button class="boton_minimal margen_izquierda_item" v-on:click="() => raiz.cargar_datos()">
+        <div class="emoji"> ♻️ </div>
         <div class="para_tablet_o_mayor" style="padding-left: 4px; padding-right: 10px;">Cargar</div>
       </button>
     </div>
@@ -448,40 +430,20 @@ creo DiseniadorDeInfraestructuraDeConstructorDeBasesDeDatosDeCastelog como un co
           <li>
             <details>
               <summary>
-                Descripción:
+                Alias:
+              </summary>
+              <div>
+                <input class="w_100" type="text" v-model="maquina.alias" />
+              </div>
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary>
+                <div>Descripción:</div>
               </summary>
               <div>
                 <textarea class="w_100" type="number" v-model="maquina.descripcion"></textarea>
-              </div>
-            </details>
-          </li>
-          <li>
-            <details>
-              <summary>
-                URL:
-              </summary>
-              <div>
-                <input class="w_100" type="text" v-model="maquina.url"/>
-              </div>
-            </details>
-          </li>
-          <li>
-            <details>
-              <summary>
-                Puerto de URL:
-              </summary>
-              <div>
-                <input class="w_100" type="number" v-model="maquina.puerto_de_url"/>
-              </div>
-            </details>
-          </li>
-          <li>
-            <details>
-              <summary>
-                Identificador único:
-              </summary>
-              <div>
-                <input class="w_100" type="text" v-model="maquina.identificador_unico" />
               </div>
             </details>
           </li>
@@ -514,40 +476,20 @@ creo DiseniadorDeInfraestructuraDeConstructorDeBasesDeDatosDeCastelog como un co
                       <li>
                         <details>
                           <summary>
+                            <div>Alias:</div>
+                          </summary>
+                          <div>
+                            <input class="w_100" type="text" v-model="proyecto.alias" />
+                          </div>
+                        </details>
+                      </li>
+                      <li>
+                        <details>
+                          <summary>
                             <div>Descripción:</div>
                           </summary>
                           <div>
                             <textarea class="w_100" type="number" v-model="proyecto.descripcion"></textarea>
-                          </div>
-                        </details>
-                      </li>
-                      <li>
-                        <details>
-                          <summary>
-                            <div>Ruta de URL:</div>
-                          </summary>
-                          <div>
-                            <input class="w_100" type="text" v-model="proyecto.ruta_de_url" />
-                          </div>
-                        </details>
-                      </li>
-                      <li>
-                        <details>
-                          <summary>
-                            <div>Identificador único:</div>
-                          </summary>
-                          <div>
-                            <input class="w_100" type="text" v-model="proyecto.identificador_unico" />
-                          </div>
-                        </details>
-                      </li>
-                      <li>
-                        <details>
-                          <summary>
-                            <div>Nombre:</div>
-                          </summary>
-                          <div>
-                            <input class="w_100" type="text" v-model="proyecto.nombre" />
                           </div>
                         </details>
                       </li>
@@ -584,66 +526,6 @@ creo DiseniadorDeInfraestructuraDeConstructorDeBasesDeDatosDeCastelog como un co
                                       </summary>
                                       <div>
                                         <textarea class="w_100" type="number" v-model="conexion.descripcion"></textarea>
-                                      </div>
-                                    </details>
-                                  </li>
-                                  <li>
-                                    <details>
-                                      <summary>
-                                        <div>Usuario de base de datos:</div>
-                                      </summary>
-                                      <div>
-                                        <input class="w_100" type="text" v-model="conexion.usuario_de_base_de_datos" />
-                                      </div>
-                                    </details>
-                                  </li>
-                                  <li>
-                                    <details>
-                                      <summary>
-                                        <div>Contraseña de usuario:</div>
-                                      </summary>
-                                      <div>
-                                        <input class="w_100" type="text" v-model="conexion.contrasenia_de_base_de_datos" />
-                                      </div>
-                                    </details>
-                                  </li>
-                                  <li>
-                                    <details>
-                                      <summary>
-                                        <div>URL de base de datos:</div>
-                                      </summary>
-                                      <div>
-                                        <input class="w_100" type="text" v-model="conexion.url_de_base_de_datos" />
-                                      </div>
-                                    </details>
-                                  </li>
-                                  <li>
-                                    <details>
-                                      <summary>
-                                        <div>Puerto de base de datos:</div>
-                                      </summary>
-                                      <div>
-                                        <input class="w_100" type="text" v-model="conexion.puerto_de_base_de_datos" />
-                                      </div>
-                                    </details>
-                                  </li>
-                                  <li>
-                                    <details>
-                                      <summary>
-                                        <div>Nombre de base de datos:</div>
-                                      </summary>
-                                      <div>
-                                        <input class="w_100" type="text" v-model="conexion.nombre_de_base_de_datos" />
-                                      </div>
-                                    </details>
-                                  </li>
-                                  <li>
-                                    <details>
-                                      <summary>
-                                        <div>Identificador único:</div>
-                                      </summary>
-                                      <div>
-                                        <input class="w_100" type="text" v-model="conexion.identificador_unico" />
                                       </div>
                                     </details>
                                   </li>
@@ -686,10 +568,8 @@ creo DiseniadorDeInfraestructuraDeConstructorDeBasesDeDatosDeCastelog como un co
         apendizo {
           tipo: "máquina",
           nombre,
+          alias: nombre,
           descripcion: "",
-          url: "",
-          puerto_de_url: 80,
-          identificador_unico: "",
           proyectos: []
         } en this.maquinas.
         hago this.$forceUpdate(true).
@@ -703,9 +583,8 @@ creo DiseniadorDeInfraestructuraDeConstructorDeBasesDeDatosDeCastelog como un co
         apendizo {
           tipo: "proyecto",
           nombre,
+          alias: nombre,
           descripcion: "",
-          ruta_de_url: "/",
-          identificador_unico: "",
           conexiones: []
         } en maquina.proyectos.
         hago this.$forceUpdate(true).
@@ -719,13 +598,8 @@ creo DiseniadorDeInfraestructuraDeConstructorDeBasesDeDatosDeCastelog como un co
         apendizo {
           tipo: "conexión",
           nombre,
-          descripcion: "",
-          usuario_de_base_de_datos: "",
-          contrasenia_de_base_de_datos: "",
-          url_de_base_de_datos: "",
-          puerto_de_base_de_datos: "",
-          nombre_de_base_de_datos: "",
-          identificador_unico: ""
+          alias: nombre,
+          descripcion: ""
         } en proyecto.conexiones.
         hago this.$forceUpdate(true).
       }.
@@ -745,6 +619,7 @@ creo DiseniadorDeInfraestructuraDeConstructorDeBasesDeDatosDeCastelog como un co
 creo PaginaDeInicio como un componente vue2 con nombre "PaginaDeInicio" con plantilla {
   <div class="PaginaDeInicio Component">
     <ConstructorDeBasesDeDatosDeCastelog />
+    <div style="min-height: 50px;"></div>
   </div>
 }.
 
