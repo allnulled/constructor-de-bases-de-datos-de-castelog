@@ -35,13 +35,21 @@
       .titulo_de_pestanya.subtitulo_de_pestanya {
         cursor: pointer;
       }
+      .nobreakline {
+        white-space: nowrap;
+      }
+      .correccion_de_checkbox {
+        min-width: 0px;
+        width: 0px;
+        padding: 0px;
+      }
     </style>
 </head><body><div id="app"></div><script>
 // [castelog:modulo] [origen:] /home/carlos/Escritorio/Nuevo3/constructor-de-bases-de-datos-de-castelog/src/www/js/download_file.js
 (function(factory_original, filename, metadata) {
     try {
         const require_ = (typeof require === "function") ? require : function(id) { return ((typeof(require) === 'function') ? require : (...args) => {
-    return Castelog.metodos.un_modulo_importado(id, "/home/carlos/Escritorio/Nuevo3/constructor-de-bases-de-datos-de-castelog/src/www/js", "/home/carlos/Escritorio/Nuevo3/democracia-2.0");
+    return Castelog.metodos.un_modulo_importado(id, "/home/carlos/Escritorio/Nuevo3/constructor-de-bases-de-datos-de-castelog/src/www/js", "/home/carlos/Escritorio/Nuevo3/constructor-de-bases-de-datos-de-castelog");
 })(id);
 };
         const module_ = (typeof module !== "undefined") ? module : { exports:undefined };
@@ -69,7 +77,7 @@
         if((typeof(Castelog) !== "undefined")
         && (typeof(Castelog.metodos) !== "undefined")
         && (typeof(Castelog.metodos.un_modulo_exportado) === "function")) {
-            Castelog.metodos.un_modulo_exportado(name, output, factory, "/home/carlos/Escritorio/Nuevo3/constructor-de-bases-de-datos-de-castelog/src/www/js", "/home/carlos/Escritorio/Nuevo3/democracia-2.0" );
+            Castelog.metodos.un_modulo_exportado(name, output, factory, "/home/carlos/Escritorio/Nuevo3/constructor-de-bases-de-datos-de-castelog/src/www/js", "/home/carlos/Escritorio/Nuevo3/constructor-de-bases-de-datos-de-castelog" );
             envs.push("Castelog.modulos[" + JSON.stringify(name) + "].value"); 
         }
         // console.log("Exportado módulo calo " + JSON.stringify(name) + " en:\n  - " + envs.join("\n  - "));
@@ -98,7 +106,7 @@
 (function(factory_original, filename, metadata) {
     try {
         const require_ = (typeof require === "function") ? require : function(id) { return ((typeof(require) === 'function') ? require : (...args) => {
-    return Castelog.metodos.un_modulo_importado(id, "/home/carlos/Escritorio/Nuevo3/constructor-de-bases-de-datos-de-castelog/src/www", "/home/carlos/Escritorio/Nuevo3/democracia-2.0");
+    return Castelog.metodos.un_modulo_importado(id, "/home/carlos/Escritorio/Nuevo3/constructor-de-bases-de-datos-de-castelog/src/www", "/home/carlos/Escritorio/Nuevo3/constructor-de-bases-de-datos-de-castelog");
 })(id);
 };
         const module_ = (typeof module !== "undefined") ? module : { exports:undefined };
@@ -126,7 +134,7 @@
         if((typeof(Castelog) !== "undefined")
         && (typeof(Castelog.metodos) !== "undefined")
         && (typeof(Castelog.metodos.un_modulo_exportado) === "function")) {
-            Castelog.metodos.un_modulo_exportado(name, output, factory, "/home/carlos/Escritorio/Nuevo3/constructor-de-bases-de-datos-de-castelog/src/www", "/home/carlos/Escritorio/Nuevo3/democracia-2.0" );
+            Castelog.metodos.un_modulo_exportado(name, output, factory, "/home/carlos/Escritorio/Nuevo3/constructor-de-bases-de-datos-de-castelog/src/www", "/home/carlos/Escritorio/Nuevo3/constructor-de-bases-de-datos-de-castelog" );
             envs.push("Castelog.modulos[" + JSON.stringify(name) + "].value"); 
         }
         // console.log("Exportado módulo calo " + JSON.stringify(name) + " en:\n  - " + envs.join("\n  - "));
@@ -139,22 +147,22 @@
         
 // [castelog:empaquetables] "./js/download_file.js"
 
-// [castelog:html5izable] ACTIVADO con: {"autor":"allnulled","nombre":"app","version":"ultima","contenido":{"head":"<head>\n    <title>🗄 Constructor de bases de datos de Castelog</title>\n    <meta charset=\"utf8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <link rel=\"stylesheet\" href=\"./components/estilos.css\" />\n    &gt;script src=\"./js/calo.js\">&gt;/script>\n    <style>\n      .tarjeta_tipica {\n        border: 1px solid #CCC;\n        margin-top: 1px;\n        padding: 4px;\n      }\n      .win7 [role=\"tabpanel\"] {\n        padding: 2px;\n        margin-bottom: 0px;\n      }\n      .w_100 { width:100% !important; }\n      .subtitulo_de_pestanya {\n        padding: 4px !important;\n      }\n      .win7 button.boton_lateral {\n        margin-left: 1px;\n      }\n      .win7 details > summary {\n        display: block !important;\n      }\n      .win7 ul.tree-view.has-container {\n        margin: 0px;\n        padding: 0px;\n        padding-left: 10px;\n      }\n      .win7 ul.tree-view li {\n        margin-top: 0px !important;\n      }\n      .titulo_de_pestanya.subtitulo_de_pestanya {\n        cursor: pointer;\n      }\n    </style>\n</head>","body":"<body><div id=\"app\"></div></body>"}}
+// [castelog:html5izable] ACTIVADO con: {"autor":"allnulled","nombre":"app","version":"ultima","contenido":{"head":"<head>\n    <title>🗄 Constructor de bases de datos de Castelog</title>\n    <meta charset=\"utf8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <link rel=\"stylesheet\" href=\"./components/estilos.css\" />\n    &gt;script src=\"./js/calo.js\">&gt;/script>\n    <style>\n      .tarjeta_tipica {\n        border: 1px solid #CCC;\n        margin-top: 1px;\n        padding: 4px;\n      }\n      .win7 [role=\"tabpanel\"] {\n        padding: 2px;\n        margin-bottom: 0px;\n      }\n      .w_100 { width:100% !important; }\n      .subtitulo_de_pestanya {\n        padding: 4px !important;\n      }\n      .win7 button.boton_lateral {\n        margin-left: 1px;\n      }\n      .win7 details > summary {\n        display: block !important;\n      }\n      .win7 ul.tree-view.has-container {\n        margin: 0px;\n        padding: 0px;\n        padding-left: 10px;\n      }\n      .win7 ul.tree-view li {\n        margin-top: 0px !important;\n      }\n      .titulo_de_pestanya.subtitulo_de_pestanya {\n        cursor: pointer;\n      }\n      .nobreakline {\n        white-space: nowrap;\n      }\n      .correccion_de_checkbox {\n        min-width: 0px;\n        width: 0px;\n        padding: 0px;\n      }\n    </style>\n</head>","body":"<body><div id=\"app\"></div></body>"}}
 
 const DiseniadorDeEsquemaDeConstructorDeBasesDeDatosDeCastelog = Castelog.metodos.un_componente_vue2("DiseniadorDeEsquemaDeConstructorDeBasesDeDatosDeCastelog",
   "<div class=\"DiseniadorDeEsquemaDeConstructorDeBasesDeDatosDeCastelog Component\">"
  + "    <div class=\"titulo_de_pestanya\">▦ Tablas</div>"
  + "    <div class=\"w_100 horizontal_layout\" style=\"margin-top: 1px; margin-bottom: 1px;\">"
- + "      <button class=\"w_100\" v-on:click=\"() => agregar_elemento(tablas, 'tabla')\">"
+ + "      <button class=\"w_100\" v-on:click=\"() => agregar_tabla()\">"
  + "        <div class=\"emoji\"> ➕ </div>"
  + "        <div class=\"para_tablet_o_mayor\">Añadir tabla</div>"
  + "      </button>"
- + "      <button class=\"boton_minimal margen_izquierda_item\">"
- + "        <div class=\"emoji\" v-on:click=\"() => raiz.guardar_datos()\"> ✔ </div>"
+ + "      <button class=\"boton_minimal margen_izquierda_item\" v-on:click=\"() => raiz.guardar_datos()\">"
+ + "        <div class=\"emoji\"> ✔ </div>"
  + "        <div class=\"para_tablet_o_mayor\" style=\"padding-left: 4px; padding-right: 10px;\">Guardar</div>"
  + "      </button>"
- + "      <button class=\"boton_minimal margen_izquierda_item\">"
- + "        <div class=\"emoji\" v-on:click=\"() => raiz.cargar_datos()\"> ♻️ </div>"
+ + "      <button class=\"boton_minimal margen_izquierda_item\" v-on:click=\"() => raiz.cargar_datos()\">"
+ + "        <div class=\"emoji\"> ♻️ </div>"
  + "        <div class=\"para_tablet_o_mayor\" style=\"padding-left: 4px; padding-right: 10px;\">Cargar</div>"
  + "      </button>"
  + "    </div>"
@@ -180,40 +188,10 @@ const DiseniadorDeEsquemaDeConstructorDeBasesDeDatosDeCastelog = Castelog.metodo
  + "          <li>"
  + "            <details>"
  + "              <summary>"
- + "                Descripción:"
+ + "                Atributos de tabla:"
  + "              </summary>"
  + "              <div>"
- + "                <textarea class=\"w_100\" v-model=\"tabla.descripcion\"></textarea>"
- + "              </div>"
- + "            </details>"
- + "          </li>"
- + "          <li>"
- + "            <details>"
- + "              <summary>"
- + "                Ruta de URL de tabla:"
- + "              </summary>"
- + "              <div>"
- + "                <input class=\"w_100\" type=\"text\" v-model=\"tabla.ruta_de_url_de_tabla\" />"
- + "              </div>"
- + "            </details>"
- + "          </li>"
- + "          <li>"
- + "            <details>"
- + "              <summary>"
- + "                Identificador único:"
- + "              </summary>"
- + "              <div>"
- + "                <input class=\"w_100\" type=\"text\" v-model=\"tabla.identificador_unico\" />"
- + "              </div>"
- + "            </details>"
- + "          </li>"
- + "          <li>"
- + "            <details>"
- + "              <summary>"
- + "                Atributos de tabla extra:"
- + "              </summary>"
- + "              <div>"
- + "                <button class=\"w_100\" style=\"\" v-on:click=\"() => agregar_elemento(tabla.atributos_de_tabla, 'atributo de tabla')\">Añadir atributo</button>"
+ + "                <button class=\"w_100\" style=\"\" v-on:click=\"() => agregar_atributo_de_tabla(tabla_index)\">Añadir atributo</button>"
  + "                <ul class=\"tree-view has-container\">"
  + "                  <li v-for=\"atributo, atributo_index in tabla.atributos_de_tabla\" v-bind:key=\"'tabla-' + tabla_index + '-atributo-' + atributo_index\">"
  + "                    <div class=\"horizontal_layout\">"
@@ -221,7 +199,11 @@ const DiseniadorDeEsquemaDeConstructorDeBasesDeDatosDeCastelog = Castelog.metodo
  + "                        <details>"
  + "                          <summary>{{ atributo_index }}</summary>"
  + "                          <div>"
- + "                            <textarea class=\"w_100\" type=\"text\" v-model=\"tabla.atributos_de_tabla[atributo_index]\"></textarea>"
+ + "                            <div>"
+ + "                              <input class=\"correccion_de_checkbox\" type=\"checkbox\" :id=\"'tabla-' + tabla_index + '-atributo-' + atributo_index\" v-model=\"tabla.atributos_de_tabla[atributo_index].es_json\" />"
+ + "                              <label :for=\"'tabla-' + tabla_index + '-atributo-' + atributo_index\">como JSON</label>"
+ + "                            </div>"
+ + "                            <textarea class=\"w_100\" type=\"text\" v-model=\"tabla.atributos_de_tabla[atributo_index].valor\"></textarea>"
  + "                          </div>"
  + "                        </details>"
  + "                      </div>"
@@ -241,7 +223,7 @@ const DiseniadorDeEsquemaDeConstructorDeBasesDeDatosDeCastelog = Castelog.metodo
  + "              </summary>"
  + "              <div>"
  + "                <div class=\"titulo_de_pestanya\">▥ Columnas</div>"
- + "                <button class=\"w_100\" style=\"\" v-on:click=\"() => agregar_elemento(tabla.columnas, 'columna')\">Añadir columna</button>"
+ + "                <button class=\"w_100\" style=\"\" v-on:click=\"() => agregar_columna(tabla_index)\">Añadir columna</button>"
  + "                  <div v-for=\"columna, columna_index in tabla.columnas\" v-bind:key=\"'tabla-' + tabla_index + '-columna-' + columna_index\">"
  + "                    <div class=\"horizontal_layout\">"
  + "                      <div class=\"w_100 titulo_de_pestanya subtitulo_de_pestanya\" v-on:click=\"() => alternar_elemento(columna)\" :class=\"{active:columna.esta_mostrando_detalles}\">{{ columna.nombre || '?' }} (columna)</div>"
@@ -264,48 +246,22 @@ const DiseniadorDeEsquemaDeConstructorDeBasesDeDatosDeCastelog = Castelog.metodo
  + "                        <li>"
  + "                          <details>"
  + "                            <summary>"
- + "                              Descripción:"
+ + "                              Atributos de columna:"
  + "                            </summary>"
  + "                            <div>"
- + "                              <textarea class=\"w_100\" v-model=\"columna.descripcion\"></textarea>"
- + "                            </div>"
- + "                          </details>"
- + "                        </li>"
- + "                        <li>"
- + "                          <details>"
- + "                            <summary>"
- + "                              Ruta de URL de columna:"
- + "                            </summary>"
- + "                            <div>"
- + "                              <input class=\"w_100\" type=\"text\" v-model=\"columna.ruta_de_url_de_columna\" />"
- + "                            </div>"
- + "                          </details>"
- + "                        </li>"
- + "                        <li>"
- + "                          <details>"
- + "                            <summary>"
- + "                              Identificador único:"
- + "                            </summary>"
- + "                            <div>"
- + "                              <input class=\"w_100\" type=\"text\" v-model=\"columna.identificador_unico\" />"
- + "                            </div>"
- + "                          </details>"
- + "                        </li>"
- + "                        <li>"
- + "                          <details>"
- + "                            <summary>"
- + "                              Atributos de columna extra:"
- + "                            </summary>"
- + "                            <div>"
- + "                              <button class=\"w_100\" style=\"\" v-on:click=\"() => agregar_elemento(columna.atributos_de_columna, 'atributo de columna', { clave:'', valor:'' })\">Añadir atributo</button>"
- + "                              <ul class=\"tree-view has-container\">"
+ + "                              <button class=\"w_100\" style=\"\" v-on:click=\"() => agregar_atributo_de_columna(tabla_index, columna_index)\">Añadir atributo</button>"
+ + "                              <ul>"
  + "                                <li v-for=\"atributo, atributo_index in columna.atributos_de_columna\" v-bind:key=\"'tabla-' + tabla_index + '-atributo-' + atributo_index\">"
  + "                                  <div class=\"horizontal_layout\">"
  + "                                    <div class=\"w_100\">"
  + "                                      <details>"
  + "                                        <summary>{{ atributo_index }}</summary>"
  + "                                        <div>"
- + "                                          <textarea class=\"w_100\" type=\"text\" v-model=\"columna.atributos_de_columna[atributo_index]\"></textarea>"
+ + "                                          <div>"
+ + "                                            <input class=\"correccion_de_checkbox\" type=\"checkbox\" :id=\"'tabla-' + tabla_index + '-columna-' + columna_index + '-atributo-' + atributo_index\" v-model=\"columna.atributos_de_columna[atributo_index].es_json\"/>"
+ + "                                            <label :for=\"'tabla-' + tabla_index + '-columna-' + columna_index + '-atributo-' + atributo_index\">como JSON</label>"
+ + "                                          </div>"
+ + "                                          <textarea class=\"w_100\" type=\"text\" v-model=\"columna.atributos_de_columna[atributo_index].valor\"></textarea>"
  + "                                        </div>"
  + "                                      </details>"
  + "                                    </div>"
@@ -342,45 +298,96 @@ throw error;
 }
 
 },
-methods:{ agregar_elemento( elementos,
-tipo_de_elemento = "elemento",
-valor_base = { 
-} ) {try {
+methods:{ pedir_nombre( elementos,
+tipo_de_elemento ) {try {
 let nombre = "";
 while(!(( (!(nombre === "")) ) && ( (!(((item, list) => list.indexOf(item) !== -1)(nombre, Object.keys(elementos)))) ))) {
 nombre = this.$window.prompt( "¿Qué nombre de " + tipo_de_elemento + "?" );
 if((!(typeof nombre === 'string'))) {
+return false;
+}
+}
+return nombre;
+} catch(error) {
+console.log(error);
+throw error;
+}
+
+},
+agregar_tabla(  ) {try {
+const nombre = this.pedir_nombre( this.tablas,
+"tabla" );
+if(typeof nombre === 'undefined') {
 return;
 }
-}
-elementos[ nombre ] = Object.assign({ tipo:tipo_de_elemento,
+this.tablas[ nombre ] = { tipo:"tabla",
 nombre,
 descripcion:"",
-identificador_unico:""
-}, ( tipo_de_elemento === "tabla" ? { ruta_de_url_de_tabla:"/",
 atributos_de_tabla:{ 
 },
 columnas:{ 
 },
 esta_mostrando_detalles:false
-} : ( tipo_de_elemento === "columna" ? { ruta_de_url_de_columna:"/",
+};
+this.$forceUpdate( true );
+} catch(error) {
+console.log(error);
+throw error;
+}
+
+},
+agregar_atributo_de_tabla( tabla_id ) {try {
+const nombre = this.pedir_nombre( this.tablas[ tabla_id ].atributos_de_tabla,
+"atributo de tabla" );
+if(typeof nombre === 'undefined') {
+return;
+}
+this.tablas[ tabla_id ].atributos_de_tabla[ nombre ] = { tipo:"atributo de tabla",
+nombre,
+valor:"",
+es_json:false,
+esta_mostrando_detalles:false
+};
+this.$forceUpdate( true );
+} catch(error) {
+console.log(error);
+throw error;
+}
+
+},
+agregar_columna( tabla_id ) {try {
+const nombre = this.pedir_nombre( this.tablas[ tabla_id ].columnas,
+"columna" );
+if(typeof nombre === 'undefined') {
+return;
+}
+this.tablas[ tabla_id ].columnas[ nombre ] = { tipo:"columna",
+nombre,
+descripcion:"",
 atributos_de_columna:{ 
 },
-tipo_de_dato:"texto",
-es_identificador:false,
-es_clave_unica:false,
-es_clave_foranea:false,
-es_columna_virtual:false,
-tiene_valor_por_defecto:null,
 esta_mostrando_detalles:false
-} : { 
-} ) ), valor_base );
-if(tipo_de_elemento === "atributo de tabla") {
-elementos[ nombre ] = "";
+};
+this.$forceUpdate( true );
+} catch(error) {
+console.log(error);
+throw error;
 }
-if(tipo_de_elemento === "atributo de columna") {
-elementos[ nombre ] = "";
+
+},
+agregar_atributo_de_columna( tabla_id,
+columna_id ) {try {
+const nombre = this.pedir_nombre( this.tablas[ tabla_id ].columnas[ columna_id ].atributos_de_columna,
+"atributo de columna" );
+if(typeof nombre === 'undefined') {
+return;
 }
+this.tablas[ tabla_id ].columnas[ columna_id ].atributos_de_columna[ nombre ] = { tipo:"atributo de columna",
+nombre,
+valor:"",
+es_json:false,
+esta_mostrando_detalles:false
+};
 this.$forceUpdate( true );
 } catch(error) {
 console.log(error);
@@ -596,15 +603,15 @@ const DiseniadorDeInfraestructuraDeConstructorDeBasesDeDatosDeCastelog = Castelo
  + "    <div class=\"titulo_de_pestanya\">🖥️ Máquinas</div>"
  + "    <div class=\"w_100 horizontal_layout\" style=\"margin-top: 1px; margin-bottom: 1px;\">"
  + "      <button class=\"w_100\" v-on:click=\"() => agregar_maquina()\">"
- + "        <div class=\"emoji\"> ➕ </div>"
- + "        <div class=\"para_tablet_o_mayor\">Añadir máquina</div>"
+ + "        <span class=\"emoji\"> ➕ </span>"
+ + "        <span class=\"para_tablet_o_mayor\">Añadir máquina</span>"
  + "      </button>"
- + "      <button class=\"boton_minimal margen_izquierda_item\">"
- + "        <div class=\"emoji\" v-on:click=\"() => raiz.guardar_datos()\"> ✔ </div>"
+ + "      <button class=\"boton_minimal margen_izquierda_item\" v-on:click=\"() => raiz.guardar_datos()\">"
+ + "        <div class=\"emoji\"> ✔ </div>"
  + "        <div class=\"para_tablet_o_mayor\" style=\"padding-left: 4px; padding-right: 10px;\">Guardar</div>"
  + "      </button>"
- + "      <button class=\"boton_minimal margen_izquierda_item\">"
- + "        <div class=\"emoji\" v-on:click=\"() => raiz.cargar_datos()\"> ♻️ </div>"
+ + "      <button class=\"boton_minimal margen_izquierda_item\" v-on:click=\"() => raiz.cargar_datos()\">"
+ + "        <div class=\"emoji\"> ♻️ </div>"
  + "        <div class=\"para_tablet_o_mayor\" style=\"padding-left: 4px; padding-right: 10px;\">Cargar</div>"
  + "      </button>"
  + "    </div>"
@@ -630,40 +637,20 @@ const DiseniadorDeInfraestructuraDeConstructorDeBasesDeDatosDeCastelog = Castelo
  + "          <li>"
  + "            <details>"
  + "              <summary>"
- + "                Descripción:"
+ + "                Alias:"
+ + "              </summary>"
+ + "              <div>"
+ + "                <input class=\"w_100\" type=\"text\" v-model=\"maquina.alias\" />"
+ + "              </div>"
+ + "            </details>"
+ + "          </li>"
+ + "          <li>"
+ + "            <details>"
+ + "              <summary>"
+ + "                <div>Descripción:</div>"
  + "              </summary>"
  + "              <div>"
  + "                <textarea class=\"w_100\" type=\"number\" v-model=\"maquina.descripcion\"></textarea>"
- + "              </div>"
- + "            </details>"
- + "          </li>"
- + "          <li>"
- + "            <details>"
- + "              <summary>"
- + "                URL:"
- + "              </summary>"
- + "              <div>"
- + "                <input class=\"w_100\" type=\"text\" v-model=\"maquina.url\"/>"
- + "              </div>"
- + "            </details>"
- + "          </li>"
- + "          <li>"
- + "            <details>"
- + "              <summary>"
- + "                Puerto de URL:"
- + "              </summary>"
- + "              <div>"
- + "                <input class=\"w_100\" type=\"number\" v-model=\"maquina.puerto_de_url\"/>"
- + "              </div>"
- + "            </details>"
- + "          </li>"
- + "          <li>"
- + "            <details>"
- + "              <summary>"
- + "                Identificador único:"
- + "              </summary>"
- + "              <div>"
- + "                <input class=\"w_100\" type=\"text\" v-model=\"maquina.identificador_unico\" />"
  + "              </div>"
  + "            </details>"
  + "          </li>"
@@ -696,40 +683,20 @@ const DiseniadorDeInfraestructuraDeConstructorDeBasesDeDatosDeCastelog = Castelo
  + "                      <li>"
  + "                        <details>"
  + "                          <summary>"
+ + "                            <div>Alias:</div>"
+ + "                          </summary>"
+ + "                          <div>"
+ + "                            <input class=\"w_100\" type=\"text\" v-model=\"proyecto.alias\" />"
+ + "                          </div>"
+ + "                        </details>"
+ + "                      </li>"
+ + "                      <li>"
+ + "                        <details>"
+ + "                          <summary>"
  + "                            <div>Descripción:</div>"
  + "                          </summary>"
  + "                          <div>"
  + "                            <textarea class=\"w_100\" type=\"number\" v-model=\"proyecto.descripcion\"></textarea>"
- + "                          </div>"
- + "                        </details>"
- + "                      </li>"
- + "                      <li>"
- + "                        <details>"
- + "                          <summary>"
- + "                            <div>Ruta de URL:</div>"
- + "                          </summary>"
- + "                          <div>"
- + "                            <input class=\"w_100\" type=\"text\" v-model=\"proyecto.ruta_de_url\" />"
- + "                          </div>"
- + "                        </details>"
- + "                      </li>"
- + "                      <li>"
- + "                        <details>"
- + "                          <summary>"
- + "                            <div>Identificador único:</div>"
- + "                          </summary>"
- + "                          <div>"
- + "                            <input class=\"w_100\" type=\"text\" v-model=\"proyecto.identificador_unico\" />"
- + "                          </div>"
- + "                        </details>"
- + "                      </li>"
- + "                      <li>"
- + "                        <details>"
- + "                          <summary>"
- + "                            <div>Nombre:</div>"
- + "                          </summary>"
- + "                          <div>"
- + "                            <input class=\"w_100\" type=\"text\" v-model=\"proyecto.nombre\" />"
  + "                          </div>"
  + "                        </details>"
  + "                      </li>"
@@ -766,66 +733,6 @@ const DiseniadorDeInfraestructuraDeConstructorDeBasesDeDatosDeCastelog = Castelo
  + "                                      </summary>"
  + "                                      <div>"
  + "                                        <textarea class=\"w_100\" type=\"number\" v-model=\"conexion.descripcion\"></textarea>"
- + "                                      </div>"
- + "                                    </details>"
- + "                                  </li>"
- + "                                  <li>"
- + "                                    <details>"
- + "                                      <summary>"
- + "                                        <div>Usuario de base de datos:</div>"
- + "                                      </summary>"
- + "                                      <div>"
- + "                                        <input class=\"w_100\" type=\"text\" v-model=\"conexion.usuario_de_base_de_datos\" />"
- + "                                      </div>"
- + "                                    </details>"
- + "                                  </li>"
- + "                                  <li>"
- + "                                    <details>"
- + "                                      <summary>"
- + "                                        <div>Contraseña de usuario:</div>"
- + "                                      </summary>"
- + "                                      <div>"
- + "                                        <input class=\"w_100\" type=\"text\" v-model=\"conexion.contrasenia_de_base_de_datos\" />"
- + "                                      </div>"
- + "                                    </details>"
- + "                                  </li>"
- + "                                  <li>"
- + "                                    <details>"
- + "                                      <summary>"
- + "                                        <div>URL de base de datos:</div>"
- + "                                      </summary>"
- + "                                      <div>"
- + "                                        <input class=\"w_100\" type=\"text\" v-model=\"conexion.url_de_base_de_datos\" />"
- + "                                      </div>"
- + "                                    </details>"
- + "                                  </li>"
- + "                                  <li>"
- + "                                    <details>"
- + "                                      <summary>"
- + "                                        <div>Puerto de base de datos:</div>"
- + "                                      </summary>"
- + "                                      <div>"
- + "                                        <input class=\"w_100\" type=\"text\" v-model=\"conexion.puerto_de_base_de_datos\" />"
- + "                                      </div>"
- + "                                    </details>"
- + "                                  </li>"
- + "                                  <li>"
- + "                                    <details>"
- + "                                      <summary>"
- + "                                        <div>Nombre de base de datos:</div>"
- + "                                      </summary>"
- + "                                      <div>"
- + "                                        <input class=\"w_100\" type=\"text\" v-model=\"conexion.nombre_de_base_de_datos\" />"
- + "                                      </div>"
- + "                                    </details>"
- + "                                  </li>"
- + "                                  <li>"
- + "                                    <details>"
- + "                                      <summary>"
- + "                                        <div>Identificador único:</div>"
- + "                                      </summary>"
- + "                                      <div>"
- + "                                        <input class=\"w_100\" type=\"text\" v-model=\"conexion.identificador_unico\" />"
  + "                                      </div>"
  + "                                    </details>"
  + "                                  </li>"
@@ -868,10 +775,8 @@ return;
 }
 this.maquinas.push({ tipo:"máquina",
 nombre,
+alias:nombre,
 descripcion:"",
-url:"",
-puerto_de_url:80,
-identificador_unico:"",
 proyectos:[  ]
 })
 this.$forceUpdate( true );
@@ -891,9 +796,8 @@ return;
 }
 maquina.proyectos.push({ tipo:"proyecto",
 nombre,
+alias:nombre,
 descripcion:"",
-ruta_de_url:"/",
-identificador_unico:"",
 conexiones:[  ]
 })
 this.$forceUpdate( true );
@@ -913,13 +817,8 @@ return;
 }
 proyecto.conexiones.push({ tipo:"conexión",
 nombre,
-descripcion:"",
-usuario_de_base_de_datos:"",
-contrasenia_de_base_de_datos:"",
-url_de_base_de_datos:"",
-puerto_de_base_de_datos:"",
-nombre_de_base_de_datos:"",
-identificador_unico:""
+alias:nombre,
+descripcion:""
 })
 this.$forceUpdate( true );
 } catch(error) {
@@ -959,6 +858,7 @@ throw error;
 const PaginaDeInicio = Castelog.metodos.un_componente_vue2("PaginaDeInicio",
   "<div class=\"PaginaDeInicio Component\">"
  + "    <ConstructorDeBasesDeDatosDeCastelog />"
+ + "    <div style=\"min-height: 50px;\"></div>"
  + "  </div>",
   null,
   null);
