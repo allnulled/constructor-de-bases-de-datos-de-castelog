@@ -212,7 +212,7 @@ creo DiseniadorDeEsquemaDeConstructorDeBasesDeDatosDeCastelog como un componente
       }.
       método agregar_tabla con () donde {
         creo nombre como this.pedir_nombre(this.tablas, "tabla").
-        si nombre es tipo indefinido retorno.
+        si nombre no es tipo texto retorno.
         asigno this.tablas[nombre] como {
           tipo: "tabla",
           nombre,
@@ -225,7 +225,7 @@ creo DiseniadorDeEsquemaDeConstructorDeBasesDeDatosDeCastelog como un componente
       }.
       método agregar_atributo_de_tabla con (tabla_id) donde {
         creo nombre como this.pedir_nombre(this.tablas[tabla_id].atributos_de_tabla, "atributo de tabla").
-        si nombre es tipo indefinido retorno.
+        si nombre no es tipo texto retorno.
         asigno this.tablas[tabla_id].atributos_de_tabla[nombre] como {
           tipo: "atributo de tabla",
           nombre,
@@ -237,7 +237,7 @@ creo DiseniadorDeEsquemaDeConstructorDeBasesDeDatosDeCastelog como un componente
       }.
       método agregar_columna con (tabla_id) donde {
         creo nombre como this.pedir_nombre(this.tablas[tabla_id].columnas, "columna").
-        si nombre es tipo indefinido retorno.
+        si nombre no es tipo texto retorno.
         asigno this.tablas[tabla_id].columnas[nombre] como {
           tipo: "columna",
           nombre,
@@ -249,7 +249,7 @@ creo DiseniadorDeEsquemaDeConstructorDeBasesDeDatosDeCastelog como un componente
       }.
       método agregar_atributo_de_columna con (tabla_id, columna_id) donde {
         creo nombre como this.pedir_nombre(this.tablas[tabla_id].columnas[columna_id].atributos_de_columna, "atributo de columna").
-        si nombre es tipo indefinido retorno.
+        si nombre no es tipo texto retorno.
         asigno this.tablas[tabla_id].columnas[columna_id].atributos_de_columna[nombre] como {
           tipo: "atributo de columna",
           nombre,

@@ -171,7 +171,7 @@ throw error;
 agregar_tabla(  ) {try {
 const nombre = this.pedir_nombre( this.tablas,
 "tabla" );
-if(typeof nombre === 'undefined') {
+if((!(typeof nombre === 'string'))) {
 return;
 }
 this.tablas[ nombre ] = { tipo:"tabla",
@@ -193,7 +193,7 @@ throw error;
 agregar_atributo_de_tabla( tabla_id ) {try {
 const nombre = this.pedir_nombre( this.tablas[ tabla_id ].atributos_de_tabla,
 "atributo de tabla" );
-if(typeof nombre === 'undefined') {
+if((!(typeof nombre === 'string'))) {
 return;
 }
 this.tablas[ tabla_id ].atributos_de_tabla[ nombre ] = { tipo:"atributo de tabla",
@@ -212,7 +212,7 @@ throw error;
 agregar_columna( tabla_id ) {try {
 const nombre = this.pedir_nombre( this.tablas[ tabla_id ].columnas,
 "columna" );
-if(typeof nombre === 'undefined') {
+if((!(typeof nombre === 'string'))) {
 return;
 }
 this.tablas[ tabla_id ].columnas[ nombre ] = { tipo:"columna",
@@ -233,7 +233,7 @@ agregar_atributo_de_columna( tabla_id,
 columna_id ) {try {
 const nombre = this.pedir_nombre( this.tablas[ tabla_id ].columnas[ columna_id ].atributos_de_columna,
 "atributo de columna" );
-if(typeof nombre === 'undefined') {
+if((!(typeof nombre === 'string'))) {
 return;
 }
 this.tablas[ tabla_id ].columnas[ columna_id ].atributos_de_columna[ nombre ] = { tipo:"atributo de columna",
