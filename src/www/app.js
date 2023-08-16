@@ -54,8 +54,11 @@ const DiseniadorDeEsquemaDeConstructorDeBasesDeDatosDeCastelog = Castelog.metodo
  + "                          <summary>{{ atributo_index }}</summary>"
  + "                          <div>"
  + "                            <div>"
- + "                              <input class=\"correccion_de_checkbox\" type=\"checkbox\" :id=\"'tabla-' + tabla_index + '-atributo-' + atributo_index\" v-model=\"tabla.atributos_de_tabla[atributo_index].es_json\" />"
- + "                              <label :for=\"'tabla-' + tabla_index + '-atributo-' + atributo_index\">como JSON</label>"
+ + "                              <select v-model=\"tabla.atributos_de_tabla[atributo_index].es_tipo\" value=\"text\">"
+ + "                                <option value=\"text\">como texto</option>"
+ + "                                <option value=\"json\">como JSON</option>"
+ + "                                <option value=\"js\">como JavaScript</option>"
+ + "                              </select>"
  + "                            </div>"
  + "                            <textarea class=\"w_100\" type=\"text\" v-model=\"tabla.atributos_de_tabla[atributo_index].valor\"></textarea>"
  + "                          </div>"
@@ -112,8 +115,11 @@ const DiseniadorDeEsquemaDeConstructorDeBasesDeDatosDeCastelog = Castelog.metodo
  + "                                        <summary>{{ atributo_index }}</summary>"
  + "                                        <div>"
  + "                                          <div>"
- + "                                            <input class=\"correccion_de_checkbox\" type=\"checkbox\" :id=\"'tabla-' + tabla_index + '-columna-' + columna_index + '-atributo-' + atributo_index\" v-model=\"columna.atributos_de_columna[atributo_index].es_json\"/>"
- + "                                            <label :for=\"'tabla-' + tabla_index + '-columna-' + columna_index + '-atributo-' + atributo_index\">como JSON</label>"
+ + "                                            <select v-model=\"columna.atributos_de_columna[atributo_index].es_tipo\" value=\"text\">"
+ + "                                              <option value=\"text\">como texto</option>"
+ + "                                              <option value=\"json\">como JSON</option>"
+ + "                                              <option value=\"js\">como JavaScript</option>"
+ + "                                            </select>"
  + "                                          </div>"
  + "                                          <textarea class=\"w_100\" type=\"text\" v-model=\"columna.atributos_de_columna[atributo_index].valor\"></textarea>"
  + "                                        </div>"
@@ -199,7 +205,7 @@ return;
 this.tablas[ tabla_id ].atributos_de_tabla[ nombre ] = { tipo:"atributo de tabla",
 nombre,
 valor:"",
-es_json:false,
+es_tipo:false,
 esta_mostrando_detalles:false
 };
 this.$forceUpdate( true );
@@ -239,7 +245,7 @@ return;
 this.tablas[ tabla_id ].columnas[ columna_id ].atributos_de_columna[ nombre ] = { tipo:"atributo de columna",
 nombre,
 valor:"",
-es_json:false,
+es_tipo:"text",
 esta_mostrando_detalles:false
 };
 this.$forceUpdate( true );
@@ -410,6 +416,10 @@ console.log(error);
 throw error;
 }
 
+},
+formalizar_datos_a_json( datos_en_js ) {
+},
+formalizar_datos_desde_json( datos_en_js ) {
 },
 guardar_datos( nuevos_datos ) {try {
 const datos = ( nuevos_datos ? nuevos_datos : this.obtener_datos(  ) );

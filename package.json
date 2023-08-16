@@ -5,7 +5,7 @@
   "main": "src/index.html",
   "scripts": {
     "build": "node dev/build.js",
-    "test": "npx http-server ./src/www -c-1"
+    "test": "npx http-server ./src/www -c-1 -o app.ultima.html"
   },
   "keywords": [],
   "author": "allnulled",

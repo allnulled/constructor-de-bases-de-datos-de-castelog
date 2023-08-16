@@ -104,8 +104,11 @@ creo DiseniadorDeEsquemaDeConstructorDeBasesDeDatosDeCastelog como un componente
                           <summary>{{ atributo_index }}</summary>
                           <div>
                             <div>
-                              <input class="correccion_de_checkbox" type="checkbox" :id="'tabla-' + tabla_index + '-atributo-' + atributo_index" v-model="tabla.atributos_de_tabla[atributo_index].es_json" />
-                              <label :for="'tabla-' + tabla_index + '-atributo-' + atributo_index">como JSON</label>
+                              <select v-model="tabla.atributos_de_tabla[atributo_index].es_tipo" value="text">
+                                <option value="text">como texto</option>
+                                <option value="json">como JSON</option>
+                                <option value="js">como JavaScript</option>
+                              </select>
                             </div>
                             <textarea class="w_100" type="text" v-model="tabla.atributos_de_tabla[atributo_index].valor"></textarea>
                           </div>
@@ -162,8 +165,11 @@ creo DiseniadorDeEsquemaDeConstructorDeBasesDeDatosDeCastelog como un componente
                                         <summary>{{ atributo_index }}</summary>
                                         <div>
                                           <div>
-                                            <input class="correccion_de_checkbox" type="checkbox" :id="'tabla-' + tabla_index + '-columna-' + columna_index + '-atributo-' + atributo_index" v-model="columna.atributos_de_columna[atributo_index].es_json"/>
-                                            <label :for="'tabla-' + tabla_index + '-columna-' + columna_index + '-atributo-' + atributo_index">como JSON</label>
+                                            <select v-model="columna.atributos_de_columna[atributo_index].es_tipo" value="text">
+                                              <option value="text">como texto</option>
+                                              <option value="json">como JSON</option>
+                                              <option value="js">como JavaScript</option>
+                                            </select>
                                           </div>
                                           <textarea class="w_100" type="text" v-model="columna.atributos_de_columna[atributo_index].valor"></textarea>
                                         </div>
@@ -230,7 +236,7 @@ creo DiseniadorDeEsquemaDeConstructorDeBasesDeDatosDeCastelog como un componente
           tipo: "atributo de tabla",
           nombre,
           valor: "",
-          es_json: false,
+          es_tipo: false,
           esta_mostrando_detalles: false
         }.
         hago this.$forceUpdate(true).
@@ -254,7 +260,7 @@ creo DiseniadorDeEsquemaDeConstructorDeBasesDeDatosDeCastelog como un componente
           tipo: "atributo de columna",
           nombre,
           valor: "",
-          es_json: false,
+          es_tipo: "text",
           esta_mostrando_detalles: false
         }.
         hago this.$forceUpdate(true).
@@ -373,6 +379,12 @@ creo ConstructorDeBasesDeDatosDeCastelog como un componente vue2 con nombre "Con
         creo infraestructura como this.$refs.control_de_infraestructura.maquinas.
         creo esquema como this.$refs.control_de_esquema.tablas.
         retorno { infraestructura, esquema }.
+      }.
+      método formalizar_datos_a_json con (datos_en_js) donde {
+        
+      }.
+      método formalizar_datos_desde_json con (datos_en_js) donde {
+
       }.
       método guardar_datos con (nuevos_datos) donde {
         creo datos como cuando nuevos_datos entonces nuevos_datos si no this.obtener_datos().
